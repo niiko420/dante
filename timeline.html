@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline della Divina Commedia | Dante Alighieri</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+
+        :root {
+            --inferno: #aa0000;
+            --purgatorio: #0066cc;
+            --paradiso: #f5bd1f;
+            --main-bg: #f3f4f6;
+            --secondary-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--main-bg);
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/api/placeholder/1200/600');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .text-inferno { color: var(--inferno); }
+        .text-purgatorio { color: var(--purgatorio); }
+        .text-paradiso { color: var(--paradiso); }
+        
+        .border-inferno { border-color: var(--inferno); }
+        .border-purgatorio { border-color: var(--purgatorio); }
+        .border-paradiso { border-color: var(--paradiso); }
+        
+        .bg-inferno { background-color: var(--inferno); }
+        .bg-purgatorio { background-color: var(--purgatorio); }
+        .bg-paradiso { background-color: var(--paradiso); }
+
+        .bg-inferno-light { background-color: #fff0f0; }
+        .bg-purgatorio-light { background-color: #f0f8ff; }
+        .bg-paradiso-light { background-color: #fffbf0; }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: currentColor;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .scroll-top {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            transition: opacity 0.3s;
+        }
+
+        .card-transition {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-transition:hover {
+            transform: translateY(-5px);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .timeline-inferno::before {
+            background-color: var(--inferno);
+            box-shadow: 0 0 0 3px rgba(170, 0, 0, 0.2);
+        }
+        
+        .timeline-purgatorio::before {
+            background-color: var(--purgatorio);
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.2);
+        }
+        
+        .timeline-paradiso::before {
+            background-color: var(--paradiso);
+            box-shadow: 0 0 0 3px rgba(245, 189, 31, 0.2);
+        }
+        
+        .timeline-cantica {
+            position: relative;
+        }
+        
+        .timeline-cantica::after {
+            content: '';
+            position: absolute;
+            top: 17px;
+            left: 6px;
+            bottom: 0;
+            width: 1px;
+        }
+        
+        .timeline-inferno.timeline-cantica::after {
+            background-color: var(--inferno);
+        }
+        
+        .timeline-purgatorio.timeline-cantica::after {
+            background-color: var(--purgatorio);
+        }
+        
+        .timeline-paradiso.timeline-cantica::after {
+            background-color: var(--paradiso);
+        }
+        
+        /* Ultimo elemento senza linea verticale */
+        .timeline-item:last-child .timeline-cantica::after {
+            display: none;
+        }
+        
+        /* Stile per le immagini nelle timeline */
+        .timeline-image {
+            border-radius: 8px;
+            margin: 12px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .timeline-image:hover {
+            transform: scale(1.02);
+        }
+        
+        /* Decorazione per le intestazioni delle sezioni */
+        .section-decoration {
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-decoration::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: currentColor;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header / Navbar -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-3 flex flex-wrap items-center justify-between">
+            <div class="flex items-center">
+                <a href="index.html" class="font-semibold text-xl md:text-2xl font-serif tracking-tight">
+                    Divina Commedia
+                </a>
+            </div>
+            
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-button" class="md:hidden flex items-center px-3 py-2 border rounded text-gray-700 border-gray-700 hover:text-gray-900 hover:border-gray-900">
+                <svg class="h-3 w-3 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <title>Menu</title>
+                    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+                </svg>
+            </button>
+            
+            <!-- Navigation Links -->
+            <div id="nav-menu" class="hidden md:flex md:items-center w-full md:w-auto">
+                <div class="md:flex-grow text-center md:text-left">
+                    <a href="index.html" class="block mt-4 md:inline-block md:mt-0 mr-6 nav-link text-gray-700 hover:text-gray-900">
+                        Home
+                    </a>
+                    <a href="biografia.html" class="block mt-4 md:inline-block md:mt-0 mr-6 nav-link text-gray-700 hover:text-gray-900">
+                        Biografia
+                    </a>
+                    <a href="timeline.html" class="block mt-4 md:inline-block md:mt-0 mr-6 nav-link text-gray-700 hover:text-gray-900 font-semibold">
+                        Timeline
+                    </a>
+                    <a href="quiz.html" class="block mt-4 md:inline-block md:mt-0 mr-6 nav-link text-gray-700 hover:text-gray-900">
+                        Quiz
+                    </a>
+                    <a href="chatbot.html" class="block mt-4 md:inline-block md:mt-0 nav-link text-gray-700 hover:text-gray-900">
+                        Chatbot
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero-bg text-white py-16 md:py-24" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/api/placeholder/1200/600');">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 text-white drop-shadow-lg">Timeline della Divina Commedia</h1>
+            <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto text-white drop-shadow-lg">Il viaggio di Dante attraverso i tre regni dell'aldilà</p>
+            <div class="flex justify-center space-x-4">
+                <a href="#inferno" class="px-6 py-3 bg-inferno text-white rounded-md hover:bg-opacity-90 transition-all">Inferno</a>
+                <a href="#purgatorio" class="px-6 py-3 bg-purgatorio text-white rounded-md hover:bg-opacity-90 transition-all">Purgatorio</a>
+                <a href="#paradiso" class="px-6 py-3 bg-paradiso text-white rounded-md hover:bg-opacity-90 transition-all">Paradiso</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Introduzione -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center section-decoration text-gray-800">Il Viaggio di Dante</h2>
+                
+                <div class="flex flex-col md:flex-row items-center md:space-x-8 mb-8">
+                    <div class="md:w-1/3 mb-6 md:mb-0">
+                        <img src="img\danteImmagine.jpg" alt="Ritratto di Dante Alighieri" class="rounded-lg shadow-lg w-full">
+                    </div>
+                    <div class="md:w-2/3">
+                        <p class="text-gray-700 mb-4 leading-relaxed">
+                            La <strong>Divina Commedia</strong> è un poema allegorico-didascalico di Dante Alighieri, che racconta del suo viaggio immaginario attraverso i tre regni dell'aldilà: Inferno, Purgatorio e Paradiso.
+                        </p>
+                        <p class="text-gray-700 mb-4 leading-relaxed">
+                            Il viaggio inizia nella notte tra il 7 e l'8 aprile del 1300 (Giovedì Santo) e si conclude il 14 aprile 1300 (Mercoledì Santo), durando sette giorni in totale.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed">
+                            In questo viaggio allegorico, Dante è guidato dal poeta latino Virgilio attraverso l'Inferno e il Purgatorio, e da Beatrice attraverso il Paradiso, fino alla visione finale di Dio.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-100 p-6 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">La struttura del viaggio</h3>
+                    <div class="flex flex-wrap -mx-2">
+                        <div class="w-full md:w-1/3 px-2 mb-4 md:mb-0">
+                            <div class="bg-inferno-light p-4 rounded-lg border-t-4 border-inferno h-full">
+                                <h4 class="font-bold text-inferno mb-2">Inferno</h4>
+                                <p class="text-sm text-gray-700">8-10 aprile</p>
+                                <p class="text-gray-600">Due giorni di discesa attraverso i nove cerchi infernali</p>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-1/3 px-2 mb-4 md:mb-0">
+                            <div class="bg-purgatorio-light p-4 rounded-lg border-t-4 border-purgatorio h-full">
+                                <h4 class="font-bold text-purgatorio mb-2">Purgatorio</h4>
+                                <p class="text-sm text-gray-700">10-13 aprile</p>
+                                <p class="text-gray-600">Tre giorni e mezzo di ascesa attraverso la montagna del Purgatorio</p>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-1/3 px-2">
+                            <div class="bg-paradiso-light p-4 rounded-lg border-t-4 border-paradiso h-full">
+                                <h4 class="font-bold text-paradiso mb-2">Paradiso</h4>
+                                <p class="text-sm text-gray-700">13-14 aprile</p>
+                                <p class="text-gray-600">Un giorno e mezzo di ascesa attraverso i nove cieli fino all'Empireo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Inferno -->
+    <section id="inferno" class="py-16 bg-inferno-light">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex items-center mb-8">
+                    <span class="inline-block p-3 rounded-full bg-red-100 text-inferno mr-4">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd"></path>
+                        </svg>
+                    </span>
+                    <h2 class="text-3xl font-bold text-inferno">Inferno</h2>
+                </div>
+                <p class="text-gray-700 mb-8 leading-relaxed">
+                    Il regno della punizione eterna, strutturato come un cono rovesciato che si estende fino al centro della Terra. È diviso in nove cerchi dove le anime sono punite secondo la legge del contrappasso.
+                </p>
+                
+                <div class="mb-8">
+                    <img src="img/struttura inferno.jpg" alt="Struttura dell'Inferno dantesco" class="w-full rounded-lg shadow-lg">
+                    <p class="text-sm text-gray-500 mt-2 text-center">La struttura dell'Inferno dantesco: un imbuto che si restringe verso il centro della Terra</p>
+                </div>
+                
+                <div class="timeline-inferno timeline-cantica">
+                    <div class="timeline-item timeline-inferno">
+                        <h3 class="text-xl font-bold text-inferno mb-2">La selva oscura</h3>
+                        <p class="text-gray-500 text-sm mb-1">8 aprile 1300 - Sera</p>
+                        <p class="text-gray-700">Dante si ritrova smarrito in una "selva oscura", simbolo dell'errore e del peccato. Qui viene minacciato da tre fiere: una lonza (lussuria), un leone (superbia) e una lupa (avarizia). Appare Virgilio che si offre come guida per il suo viaggio.</p>
+                    </div>
+                    
+                    <div class="timeline-item timeline-inferno">
+                        <h3 class="text-xl font-bold text-inferno mb-2">Antinferno e Limbo</h3>
+                        <p class="text-gray-500 text-sm mb-1">8-9 aprile 1300 - Notte</p>
+                        <p class="text-gray-700">Attraversamento della porta dell'Inferno e dell'Acheronte. Nel Limbo (primo cerchio) risiedono i non battezzati e i virtuosi pagani, tra cui molti filosofi e poeti dell'antichità.</p>
+                    </div>
+                    
+                    <div class="timeline-item timeline-inferno">
+                        <h3 class="text-xl font-bold text-inferno mb-2">Cerchi II-V</h3>
+                        <p class="text-gray-500 text-sm mb-1">9 aprile 1300 - Mattina</p>
+                        <p class="text-gray-700">Visita ai cerchi dei lussuriosi (II), dei golosi (III), degli avari e prodighi (IV) e degli iracondi (V). Incontro con Paolo e Francesca, Ciacco, e attraversamento della palude Stigia.</p>
+                    </div>
+                    
+                    <div class="timeline-item timeline-inferno">
+                        <h3 class="text-xl font-bold text-inferno mb-2">Città di Dite</h3>
+                        <p class="text-gray-500 text-sm mb-1">9 aprile 1300 - Pomeriggio</p>
+                        <p class="text-gray-700">Ingresso nella città di Dite, dove si trovano gli eretici. I demoni ostacolano l'ingresso, ma un angelo inviato dal cielo interviene in aiuto dei poeti.</p>
+                    </div>
+                    
+                    <div class="timeline-item timeline-inferno">
+                        <h3 class="text-xl font-bold text-inferno mb-2">Cerchi VI-IX</h3>
+                        <p class="text-gray-500 text-sm mb-1">9 aprile 1300 - Sera</p>
+                        <p class="text-gray-700">Esplorazione degli eretici (VI), dei violenti (VII), dei fraudolenti (VIII) con le dieci Malebolge. Incontro con Farinata degli Uberti, il Minotauro, e numerosi dannati nelle diverse bolge.</p>
+                        <img src="img/le malebolge.jpg" alt="Le Malebolge" class="timeline-image my-4 w-full">
+                    </div>
+                    
+                    <div class="timeline-item timeline-inferno">
+                        <h3 class="text-xl font-bold text-inferno mb-2">Fondo dell'Inferno</h3>
+                        <p class="text-gray-500 text-sm mb-1">9-10 aprile 1300 - Notte</p>
+                        <p class="text-gray-700">Discesa al nono cerchio, dove sono puniti i traditori divisi in quattro zone: Caina, Antenora, Tolomea e Giudecca. Al centro della Terra, Dante e Virgilio incontrano Lucifero, che mastica i tre massimi traditori: Giuda, Bruto e Cassio. I poeti si arrampicano quindi sul corpo di Lucifero per risalire verso l'altro emisfero.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Purgatorio -->
+    <section id="purgatorio" class="py-16 bg-purgatorio-light">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex items-center mb-8">
+                    <span class="inline-block p-3 rounded-full bg-blue-100 text-purgatorio mr-4">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z"></path>
+                        </svg>
+                    </span>
+                    <h2 class="text-3xl font-bold text-purgatorio">Purgatorio</h2>
+                </div>
+                <p class="text-gray-700 mb-8 leading-relaxed">
+                    Il regno della purificazione, strutturato come una montagna che sorge nell'emisfero australe. È suddiviso in Antipurgatorio, sette cornici (corrispondenti ai sette peccati capitali) e il Paradiso Terrestre in cima alla montagna.
+                </p>
+                
+                <div class="mb-8">
+                    <img src="img/montagan purgatorio.jpg" alt="La montagna del Purgatorio" class="w-full rounded-lg shadow-lg">
+                    <p class="text-sm text-gray-500 mt-2 text-center">La montagna del Purgatorio con le sette cornici dei peccati capitali</p>
+                </div>
+                
+                <div class="timeline-purgatorio timeline-cantica">
+                    <div class="timeline-item timeline-purgatorio">
+                        <h3 class="text-xl font-bold text-purgatorio mb-2">Spiaggia dell'Antipurgatorio</h3>
+                        <p class="text-gray-500 text-sm mb-1">10 aprile 1300 - Alba</p>
+                        <p class="text-gray-700">Dante e Virgilio emergono sulla spiaggia dell'isola del Purgatorio. Incontro con Catone l'Uticense, guardiano del Purgatorio, e con l'angelo nocchiero che trasporta le anime.</p>
+                    </div>
+                    
+                    <div class="timeline-item timeline-purgatorio">
+                        <h3 class="text-xl font-bold text-purgatorio mb-2">Antipurgatorio</h3>
+                        <p class="text-gray-500 text-sm mb-1">10 aprile 1300 - Mattina</p>
+                        <p class="text-gray-700">Incontro con le anime dei contumaci, che devono attendere prima di iniziare la purificazione: scomunicati, negligenti e principi. Tra questi Manfredi di Svevia, Belacqua e il trovatore Sordello.</p>
+                    </div>
+                    
+                    <div class="timeline-item timeline-purgatorio">
+                        <h3 class="text-xl font-bold text-purgatorio mb-2">Valle dei Principi</h3>
+                        <p class="text-gray-500 text-sm mb-1">10-11 aprile 1300 - Sera/Notte</p>
+                        <p class="text-gray-700">Sosta nella valletta fiorita dei principi negligenti. Al calar della sera, due angeli scendono a difesa della valle dal serpente tentatore. Durante la notte, Dante si addormenta e viene trasportato in sogno da un'aquila fino alla porta del Purgatorio.</p>
+                        <img src="img/la valle dei principi.jpg" alt="La valle dei principi" class="timeline-image my-4 w-full">
+                    </div>
+                    
+                    <div class="timeline-item timeline-purgatorio">
+                        <h3 class="text-xl font-bold text-purgatorio mb-2">Porta del Purgatorio</h3>
+                        <p class="text-gray-500 text-sm mb-1">11 aprile 1300 - Mattina</p>
+                        <p class="text-gray-700">L'angelo portinaio incide sette P sulla fronte di Dante (simbolo dei sette peccati capitali) e apre la porta con due chiavi, una d'oro (simbolo dell'autorità divina) e una d'argento (simbolo della scienza teologica).</p>
+                    </div>
+                    
+                    <div class="timeline-item timeline-purgatorio">
+                        <h3 class="text-xl font-bold text-purgatorio mb-2">Cornici I-III</h3>
+                        <p class="text-gray-500 text-sm mb-1">11-12 aprile 1300</p>
+                        <p class="text-gray-700">Visita delle cornici dei superbi (I), degli invidiosi (II) e degli iracondi (III). I superbi portano pesanti massi sulla schiena, gli invidiosi hanno gli occhi cuciti con fil di ferro, e gli iracondi sono avvolti nel fumo.</p>
+                    </div>
+                    
+                    <div class="timeline-item timeline-purgatorio">
+                        <h3 class="text-xl font-bold text-purgatorio mb-2">Cornici IV-VII</h3>
+                        <p class="text-gray-500 text-sm mb-1">12-13 aprile 1300</p>
+                        <p class="text-gray-700">Attraversamento delle cornici degli accidiosi (IV), degli avari e prodighi (V), dei golosi (VI) e dei lussuriosi (VII). Incontro con il poeta latino Stazio e passaggio attraverso il muro di fuoco che purifica dalla lussuria.</p>
+                    </div>
+                    
+                    <div class="timeline-item timeline-purgatorio">
+                        <h3 class="text-xl font-bold text-purgatorio mb-2">Paradiso Terrestre</h3>
+                        <p class="text-gray-500 text-sm mb-1">13 aprile 1300 - Sera</p>
+                        <p class="text-gray-700">Arrivo nel giardino dell'Eden. Incontro con Matelda, sfilata del corteo mistico, apparizione di Beatrice che rimprovera Dante per i suoi peccati e gli fa confessare le sue colpe. Virgilio scompare. Dante viene immerso nei fiumi Lete (che cancella il ricordo del peccato) ed Eunoè (che rafforza il ricordo del bene compiuto).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Paradiso -->
+    <section id="paradiso" class="py-16 bg-paradiso-light">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex items-center mb-8">
+                    <span class="inline-block p-3 rounded-full bg-yellow-100 text-paradiso mr-4">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1h4v1a2 2 0 11-4 0zM12 14c.015-.34.208-.646.477-.859a4 4 0 10-4.954 0c.27.213.462.519.476.859h4.002z"></path>
+                        </svg>
+                    </span>
+                    <h2 class="text-3xl font-bold text-paradiso">Paradiso</h2>
+                </div>
+                <p class="text-gray-700 mb-8 leading-relaxed">
+                    Il regno della beatitudine eterna, strutturato secondo la concezione tolemaica dell'universo, con nove cieli concentrici che ruotano attorno alla Terra e l'Empireo immobile oltre lo spazio e il tempo.
+                </p>
+                
+                <div class="mb-8">
+                    <img src="img/i cieli del paradiso.jpg" alt="I cieli del Paradiso dantesco" class="w-full rounded-lg shadow-lg">
+                    <p class="text-sm text-gray-500 mt-2 text-center">I nove cieli concentrici del Paradiso dantesco</p>
+                </div>
+                
+                <div class="timeline-paradiso timeline-cantica">
+                    <div class="timeline-item timeline-paradiso">
+                        <h3 class="text-xl font-bold text-paradiso mb-2">Ascesa al Paradiso</h3>
+                        <p class="text-gray-500 text-sm mb-1">13 aprile 1300 - Notte</p>
+                        <p class="text-gray-700">Dante, guidato da Beatrice, ascende velocemente verso il cielo. Beatrice spiega a Dante l'ordine dell'universo e come le anime, pur apparendo nei vari cieli, abbiano la loro vera sede nell'Empireo.</p>
+                    </div>
+                    
+                    <div class="timeline-item timeline-paradiso">
+                        <h3 class="text-xl font-bold text-paradiso mb-2">Cielo della Luna</h3>
+                        <p class="text-gray-500 text-sm mb-1">13 aprile 1300</p>
+                        <p class="text-gray-700">Primo cielo, dove appaiono le anime di coloro che mancarono ai voti religiosi. Incontro con Piccarda Donati e l'imperatrice Costanza d'Altavilla.</p>
+                    </div>
+                    
+                    <div class="timeline-item timeline-paradiso">
+                        <h3 class="text-xl font-bold text-paradiso mb-2">Cielo di Mercurio</h3>
+                        <p class="text-gray-500 text-sm mb-1">13 aprile 1300</p>
+                        <p class="text-gray-700">Secondo cielo, dove risiedono gli spiriti attivi per desiderio di gloria. Incontro con l'imperatore Giustiniano e Romeo di Villanova.</p>
+                    </div>
+                    
+                    <div class="timeline-item timeline-paradiso">
+                        <h3 class="text-xl font-bold text-paradiso mb-2">Cielo di Venere</h3>
+                        <p class="text-gray-500 text-sm mb-1">13 aprile 1300</p>
+                        <p class="text-gray-700">Terzo cielo, dove appaiono gli spiriti amanti. Incontro con Carlo Martello d'Angiò, Cunizza da Romano e Folchetto di Marsiglia.</p>
+                    </div>
+                    
+                    <div class="timeline-item timeline-paradiso">
+                        <h3 class="text-xl font-bold text-paradiso mb-2">Cielo del Sole</h3>
+                        <p class="text-gray-500 text-sm mb-1">14 aprile 1300 - Mattina</p>
+                        <p class="text-gray-700">Quarto cielo, dove risiedono gli spiriti sapienti. Incontro con San Tommaso d'Aquino, che presenta gli altri spiriti della prima corona e narra la vita di San Francesco. Poi incontro con San Bonaventura, che presenta gli spiriti della seconda corona e narra la vita di San Domenico.</p>
+                    </div>
+                    
+                    <div class="timeline-item timeline-paradiso">
+                        <h3 class="text-xl font-bold text-paradiso mb-2">Cielo di Marte</h3>
+                        <p class="text-gray-500 text-sm mb-1">14 aprile 1300</p>
+                        <p class="text-gray-700">Quinto cielo, dove appaiono gli spiriti combattenti per la fede. Incontro con l'antenato Cacciaguida, che profetizza l'esilio di Dante e lo invita a raccontare tutto ciò che ha visto nel suo viaggio.</p>
+                    </div>
+                    
+                    <div class="timeline-item timeline-paradiso">
+                        <h3 class="text-xl font-bold text-paradiso mb-2">Cielo di Giove</h3>
+                        <p class="text-gray-500 text-sm mb-1">14 aprile 1300</p>
+                        <p class="text-gray-700">Sesto cielo, dove risiedono gli spiriti giusti. Le anime formano prima lettere che compongono la frase "DILIGITE IUSTITIAM QUI IUDICATIS TERRAM" (Amate la giustizia, voi che giudicate la terra), poi si dispongono a formare un'aquila, simbolo dell'Impero.</p>
+                    </div>
+                    
+                    <div class="timeline-item timeline-paradiso">
+                        <h3 class="text-xl font-bold text-paradiso mb-2">Cielo di Saturno</h3>
+                        <p class="text-gray-500 text-sm mb-1">14 aprile 1300</p>
+                        <p class="text-gray-700">Settimo cielo, dove appaiono gli spiriti contemplativi. Incontro con San Pier Damiani e San Benedetto da Norcia.</p>
+                    </div>
+                    
+                    <div class="timeline-item timeline-paradiso">
+                        <h3 class="text-xl font-bold text-paradiso mb-2">Cielo delle Stelle Fisse</h3>
+                        <p class="text-gray-500 text-sm mb-1">14 aprile 1300</p>
+                        <p class="text-gray-700">Ottavo cielo, dove appare il trionfo di Cristo e della Vergine Maria. Dante è esaminato sulle tre virtù teologali da San Pietro (fede), San Giacomo (speranza) e San Giovanni (carità).</p>
+                    </div>
+                    
+                    <div class="timeline-item timeline-paradiso">
+                        <h3 class="text-xl font-bold text-paradiso mb-2">Primo Mobile</h3>
+                        <p class="text-gray-500 text-sm mb-1">14 aprile 1300</p>
+                        <p class="text-gray-700">Nono cielo, che comunica il movimento a tutti gli altri cieli. Beatrice spiega la struttura dell'universo e Dante vede il punto luminosissimo (Dio) circondato dai nove cori angelici disposti in cerchi concentrici.</p>
+                    </div>
+                    
+                    <div class="timeline-item timeline-paradiso">
+                        <h3 class="text-xl font-bold text-paradiso mb-2">Empireo</h3>
+                        <p class="text-gray-500 text-sm mb-1">14 aprile 1300 - Pomeriggio</p>
+                        <p class="text-gray-700">Cielo al di là dello spazio e del tempo, sede di Dio e dei beati. Dante vede la rosa candida dei beati, Beatrice lo lascia per tornare al suo seggio e San Bernardo diventa la sua nuova guida. Dopo una preghiera alla Vergine, Dante ha la visione finale di Dio come tre cerchi di uguale grandezza e colore diverso, e comprende il mistero dell'Incarnazione. Il viaggio si conclude con la visione dell'Amore divino che muove il sole e le altre stelle.</p>
+                        <img src="img/la rosa dei beati.jpg" alt="La rosa dei beati nell'Empireo" class="timeline-image my-4 w-full">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusione e CTA -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 section-decoration text-gray-800">Il Viaggio di Dante: Un Percorso di Redenzione</h2>
+                <p class="text-gray-700 mb-8 leading-relaxed">
+                    Il viaggio di Dante attraverso i tre regni dell'aldilà rappresenta il percorso dell'anima umana dalla condizione di peccato (Inferno) alla purificazione (Purgatorio) fino alla beatitudine eterna (Paradiso).
+                </p>
+                
+                <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
+                    <a href="biografia.html" class="px-8 py-3 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition-all">Scopri la vita di Dante</a>
+                    <a href="quiz.html" class="px-8 py-3 bg-gray-100 text-gray-800 border border-gray-300 rounded-md hover:bg-gray-200 transition-all">Metti alla prova le tue conoscenze</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Footer-->
+<footer class="bg-gray-900 text-white py-10">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <h2 class="text-2xl font-bold mb-4 md:mb-0">La Divina Commedia</h2>
+            
+        </div>
+        <hr class="my-6 border-gray-700">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Navigazione</h3>
+                <ul class="space-y-2">
+                    <li><a href="index.html" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                    <li><a href="inferno.html" class="text-gray-400 hover:text-white transition duration-300">Inferno</a></li>
+                    <li><a href="purgatorio.html" class="text-gray-400 hover:text-white transition duration-300">Purgatorio</a></li>
+                    <li><a href="paradiso.html" class="text-gray-400 hover:text-white transition duration-300">Paradiso</a></li>
+                    <li><a href="biografia.html" class="text-gray-400 hover:text-white transition duration-300">Biografia</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Contenuti correlati</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="biografia.html" 
+                               rel="noopener noreferrer"
+                               class="text-gray-400 hover:text-white transition duration-300">
+                                Dante Alighieri
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://it.wikipedia.org/wiki/Letteratura_medievale" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="text-gray-400 hover:text-white transition duration-300">
+                                Letteratura medievale
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://it.wikipedia.org/wiki/Storia_di_Firenze" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="text-gray-400 hover:text-white transition duration-300">
+                                Storia di Firenze
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Risorse</h3>
+                <ul class="space-y-2">
+                    <li><a href="quiz.html" class="text-gray-400 hover:text-white transition duration-300">Quiz</a></li>
+                    <li><a href="https://it.wikipedia.org/wiki/Divina_Commedia" target="_blank"  class="text-gray-400 hover:text-white transition duration-300">Approfondimenti</a></li>
+                    <li><button onclick="downloadTutto()" class="text-gray-400 hover:text-white transition duration-300 text-left w-full">Download PDF</button></li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-8 text-center text-gray-400 text-sm">
+            <p>© 2025 La Divina Commedia. Tutti i diritti riservati.</p>
+            <p class="mt-2">Sviluppato per scopi educativi.</p>
+        </div>
+    </div>
+</footer>
+
+    <!-- Scroll to top button -->
+    <button id="scroll-top" class="scroll-top bg-gray-800 text-white p-3 rounded-full hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
+
+    <script>
+            function downloadTutto() {
+    const pdfUrl = 'assets/la divina commedia.pdf';
+
+    // Apre il PDF in una nuova scheda
+    window.open(pdfUrl, '_blank');
+    }
+    
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const navMenu = document.getElementById('nav-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            navMenu.classList.toggle('hidden');
+        });
+        
+        // Scroll to top button functionality
+        const scrollTopButton = document.getElementById('scroll-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopButton.style.display = 'block';
+            } else {
+                scrollTopButton.style.display = 'none';
+            }
+        });
+        
+        scrollTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!navMenu.classList.contains('hidden')) {
+                        navMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
