@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Divina Commedia | Dante Alighieri</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+
+        :root {
+            --inferno: #aa0000;
+            --purgatorio: #0066cc;
+            --paradiso: #f5bd1f;
+            --main-bg: #f3f4f6;
+            --secondary-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--main-bg);
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/api/placeholder/1000/500');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .cantica-card-inferno:hover {
+            border-color: var(--inferno);
+            box-shadow: 0 5px 15px rgba(170, 0, 0, 0.2);
+        }
+
+        .cantica-card-purgatorio:hover {
+            border-color: var(--purgatorio);
+            box-shadow: 0 5px 15px rgba(0, 102, 204, 0.2);
+        }
+
+        .cantica-card-paradiso:hover {
+            border-color: var(--paradiso);
+            box-shadow: 0 5px 15px rgba(245, 189, 31, 0.2);
+        }
+
+        .text-inferno { color: var(--inferno); }
+        .text-purgatorio { color: var(--purgatorio); }
+        .text-paradiso { color: var(--paradiso); }
+        
+        .border-inferno { border-color: var(--inferno); }
+        .border-purgatorio { border-color: var(--purgatorio); }
+        .border-paradiso { border-color: var(--paradiso); }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: currentColor;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .scroll-top {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            transition: opacity 0.3s;
+        }
+
+        .card-transition {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-transition:hover {
+            transform: translateY(-5px);
+        }
+
+        .bg-uniform-light {
+            background-color: var(--secondary-bg);
+        }
+
+        .bg-uniform-dark {
+            background-color: var(--main-bg);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header / Navbar -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-3 flex flex-wrap items-center justify-between">
+            <div class="flex items-center">
+                <a href="index.html" class="font-semibold text-xl md:text-2xl font-serif tracking-tight">
+                    Divina Commedia
+                </a>
+            </div>
+            
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-button" class="md:hidden flex items-center px-3 py-2 border rounded text-gray-700 border-gray-700 hover:text-gray-900 hover:border-gray-900">
+                <svg class="h-3 w-3 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <title>Menu</title>
+                    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+                </svg>
+            </button>
+            
+            <!-- Navigation Links -->
+            <div id="nav-menu" class="hidden md:flex md:items-center w-full md:w-auto">
+                <div class="md:flex-grow text-center md:text-left">
+                    <a href="#cantiche" class="block mt-4 md:inline-block md:mt-0 mr-6 nav-link text-gray-700 hover:text-gray-900">
+                        Cantiche
+                    </a>
+                    <a href="biografia.html" class="block mt-4 md:inline-block md:mt-0 mr-6 nav-link text-gray-700 hover:text-gray-900">
+                        Biografia
+                    </a>
+        
+                    <a href="timeline.html" class="block mt-4 md:inline-block md:mt-0 mr-6 nav-link text-gray-700 hover:text-gray-900">
+                        Timeline
+                    </a>
+                    <a href="quiz.html" class="block mt-4 md:inline-block md:mt-0 mr-6 nav-link text-gray-700 hover:text-gray-900">
+                        Quiz
+                    </a>
+                    <a href="chatbot.html" class="block mt-4 md:inline-block md:mt-0 nav-link text-gray-700 hover:text-gray-900">
+                        Chatbot
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero-bg text-white py-16 md:py-24" style="background-image: url('img/cielo stellato.jpg'); background-size: cover; background-position: center;">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 text-white drop-shadow-lg">La Divina Commedia</h1>
+            <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto text-white drop-shadow-lg">Il capolavoro della letteratura italiana che ha segnato la storia dell'umanità</p>
+            <a href="#introduzione" class="inline-block bg-white text-gray-900 hover:bg-gray-200 px-5 py-2 rounded-lg font-medium transition duration-300 text-lg">
+                Scopri il viaggio
+            </a>
+        </div>
+    </section>
+    
+    
+
+    <!-- Introduzione -->
+    <section id="introduzione" class="py-16 bg-uniform-light">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-2/5 mb-6 md:mb-0 md:pr-8">
+                    <img src="img\dante.png" alt="Ritratto di Dante Alighieri" class="rounded-lg shadow-lg w-full max-w-md mx-auto">
+                </div>
+                <div class="md:w-3/5">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Il Poema e l'Autore</h2>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        La <strong>Divina Commedia</strong> è un poema allegorico-didascalico scritto da Dante Alighieri tra il 1304 e il 1321, anno della sua morte. È considerata la più importante opera della letteratura italiana e uno dei maggiori capolavori della letteratura mondiale.
+                    </p>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        <strong>Dante Alighieri</strong> (Firenze, 1265 - Ravenna, 1321) è stato poeta, scrittore e politico italiano. Esiliato da Firenze per motivi politici, compose la Divina Commedia durante il suo esilio, descrivendo un viaggio immaginario attraverso i tre regni dell'aldilà: Inferno, Purgatorio e Paradiso.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed">
+                        L'opera, scritta in volgare fiorentino, si compone di 100 canti distribuiti nelle tre cantiche: 34 nell'Inferno e 33 ciascuna nelle altre due. È un racconto allegorico del viaggio di Dante, guidato prima da Virgilio e poi da Beatrice, verso la redenzione e la visione di Dio.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Struttura dell'Opera -->
+    <section id="cantiche" class="py-16 bg-uniform-dark">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center">La Struttura dell'Opera</h2>
+            <p class="text-gray-700 mb-10 max-w-4xl mx-auto text-center">
+                La Divina Commedia è strutturata secondo una precisa architettura numerica e simbolica. Il poema è diviso in tre cantiche, ciascuna rappresentante un regno dell'aldilà.
+            </p>
+            
+            <div class="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6 justify-center">
+                <!-- Inferno Card -->
+                <div class="bg-uniform-light rounded-lg shadow-md border-2 border-transparent cantica-card-inferno card-transition p-6 md:w-1/3">
+                    <div class="text-center mb-4">
+                        <span class="inline-block p-3 rounded-full bg-red-100 text-inferno">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd"></path>
+                            </svg>
+                        </span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-center text-inferno">Inferno</h3>
+                    <p class="text-gray-700 mb-4">
+                        Il regno della punizione eterna, organizzato in 9 cerchi di crescente gravità, dove sono puniti i peccatori secondo la legge del contrappasso.
+                    </p>
+                    <div class="text-center">
+                        <a href="inferno.html" class="inline-block border-2 border-inferno text-inferno hover:bg-red-50 px-4 py-2 rounded font-medium transition duration-300">
+                            Esplora l'Inferno
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Purgatorio Card -->
+                <div class="bg-uniform-light rounded-lg shadow-md border-2 border-transparent cantica-card-purgatorio card-transition p-6 md:w-1/3">
+                    <div class="text-center mb-4">
+                        <span class="inline-block p-3 rounded-full bg-blue-100 text-purgatorio">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z"></path>
+                            </svg>
+                        </span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-center text-purgatorio">Purgatorio</h3>
+                    <p class="text-gray-700 mb-4">
+                        Il regno della purificazione, strutturato come una montagna con 7 cornici, dove le anime si purificano dai peccati per ascendere al Paradiso.
+                    </p>
+                    <div class="text-center">
+                        <a href="purgatorio.html" class="inline-block border-2 border-purgatorio text-purgatorio hover:bg-blue-50 px-4 py-2 rounded font-medium transition duration-300">
+                            Esplora il Purgatorio
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Paradiso Card -->
+                <div class="bg-uniform-light rounded-lg shadow-md border-2 border-transparent cantica-card-paradiso card-transition p-6 md:w-1/3">
+                    <div class="text-center mb-4">
+                        <span class="inline-block p-3 rounded-full bg-yellow-100 text-paradiso">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1h4v1a2 2 0 11-4 0zM12 14c.015-.34.208-.646.477-.859a4 4 0 10-4.954 0c.27.213.462.519.476.859h4.002z"></path>
+                            </svg>
+                        </span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-center text-paradiso">Paradiso</h3>
+                    <p class="text-gray-700 mb-4">
+                        Il regno della beatitudine eterna, organizzato in 9 cieli in cui dimorano le anime beate, fino all'Empireo dove Dante contempla la visione di Dio.
+                    </p>
+                    <div class="text-center">
+                        <a href="paradiso.html" class="inline-block border-2 border-paradiso text-paradiso hover:bg-yellow-50 px-4 py-2 rounded font-medium transition duration-300">
+                            Esplora il Paradiso
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Citazioni Celebri -->
+    <section class="py-16 bg-uniform-light">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center">Citazioni Celebri</h2>
+            
+            <div class="swiper-container" id="quotes-slider">
+                <div class="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8">
+                    <!-- Citazione 1 -->
+                    <div class="quote-slide bg-uniform-dark p-6 rounded-lg md:w-1/3">
+                        <p class="text-gray-700 italic mb-4">"Fatti non foste a viver come bruti,<br>ma per seguir virtute e canoscenza."</p>
+                        <p class="text-right font-semibold">— Inferno, Canto XXVI</p>
+                    </div>
+                    
+                    <!-- Citazione 2 -->
+                    <div class="quote-slide bg-uniform-dark p-6 rounded-lg md:w-1/3">
+                        <p class="text-gray-700 italic mb-4">"Fama di loro quivi non si serba."</p>
+                        <p class="text-right font-semibold">— Purgatorio, Canto XXVI</p>
+                    </div>
+                    
+                    <!-- Citazione 3 -->
+                    <div class="quote-slide bg-uniform-dark p-6 rounded-lg md:w-1/3">
+                        <p class="text-gray-700 italic mb-4">"L'amor che move il sole e l'altre stelle."</p>
+                        <p class="text-right font-semibold">— Paradiso, Canto XXXIII</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sezioni del Sito -->
+    <section class="py-16 bg-uniform-dark">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center">Esplora il Sito</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Biografia -->
+                <a href="biografia.html" class="bg-uniform-light rounded-lg shadow-md hover:shadow-lg p-6 text-center card-transition">
+                    <div class="text-center mb-4">
+                        <span class="inline-block p-3 rounded-full bg-green-100 text-green-600">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                            </svg>
+                        </span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Biografia</h3>
+                    <p class="text-gray-600">Scopri la vita e le opere di Dante Alighieri</p>
+                </a>
+                
+                <!-- Chatbot -->
+                <a href="chatbot.html" class="bg-uniform-light rounded-lg shadow-md hover:shadow-lg p-6 text-center card-transition">
+                    <div class="text-center mb-4">
+                        <span class="inline-block p-3 rounded-full bg-purple-100 text-purple-600">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"></path>
+                            </svg>
+                        </span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Chatbot</h3>
+                    <p class="text-gray-600">Comunica con i personaggi principali del capolavoro dantesco</p>
+                </a>
+                
+                <!-- Timeline -->
+                <a href="timeline.html" class="bg-uniform-light rounded-lg shadow-md hover:shadow-lg p-6 text-center card-transition">
+                    <div class="text-center mb-4">
+                        <span class="inline-block p-3 rounded-full bg-indigo-100 text-indigo-600">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                            </svg>
+                        </span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Timeline</h3>
+                    <p class="text-gray-600">La cronologia del viaggio di Dante attraverso i tre regni</p>
+                </a>
+                
+                <!-- Quiz -->
+                <a href="quiz.html" class="bg-uniform-light rounded-lg shadow-md hover:shadow-lg p-6 text-center card-transition">
+                    <div class="text-center mb-4">
+                        <span class="inline-block p-3 rounded-full bg-pink-100 text-pink-600">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path>
+                            </svg>
+                        </span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Quiz</h3>
+                    <p class="text-gray-600">Metti alla prova la tua conoscenza della Divina Commedia</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-gray-900 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Pronto ad esplorare la Divina Commedia?</h2>
+            <p class="text-lg md:text-xl mb-8 max-w-4xl mx-auto">
+                Inizia subito il tuo viaggio nei tre regni dell'aldilà e scopri i segreti dell'opera più importante della letteratura italiana.
+            </p>
+            <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 justify-center">
+                <a href="inferno.html" class="bg-red-700 hover:bg-red-800 text-white px-6 py-3 rounded-lg font-medium transition duration-300">
+                    Inferno
+                </a>
+                <a href="purgatorio.html" class="bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 rounded-lg font-medium transition duration-300">
+                    Purgatorio
+                </a>
+                <a href="paradiso.html" class="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-lg font-medium transition duration-300">
+                    Paradiso
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!--Footer-->
+<footer class="bg-gray-900 text-white py-10">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <h2 class="text-2xl font-bold mb-4 md:mb-0">La Divina Commedia</h2>
+            
+        </div>
+        <hr class="my-6 border-gray-700">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Navigazione</h3>
+                <ul class="space-y-2">
+                    <li><a href="index.html" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                    <li><a href="#introduzione" class="text-gray-400 hover:text-white transition duration-300">Introduzione</a></li>
+                    <li><a href="#cantiche" class="text-gray-400 hover:text-white transition duration-300">Struttura</a></li>
+                    <li><a href="inferno.html" class="text-gray-400 hover:text-white transition duration-300">Inferno</a></li>
+                    <li><a href="purgatorio.html" class="text-gray-400 hover:text-white transition duration-300">Purgatorio</a></li>
+                    <li><a href="paradiso.html" class="text-gray-400 hover:text-white transition duration-300">Paradiso</a></li>
+                    <li><a href="biografia.html" class="text-gray-400 hover:text-white transition duration-300">Biografia</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Contenuti correlati</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="biografia.html" 
+                               rel="noopener noreferrer"
+                               class="text-gray-400 hover:text-white transition duration-300">
+                                Dante Alighieri
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://it.wikipedia.org/wiki/Letteratura_medievale" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="text-gray-400 hover:text-white transition duration-300">
+                                Letteratura medievale
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://it.wikipedia.org/wiki/Storia_di_Firenze" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="text-gray-400 hover:text-white transition duration-300">
+                                Storia di Firenze
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Risorse</h3>
+                <ul class="space-y-2">
+                    <li><a href="quiz.html" class="text-gray-400 hover:text-white transition duration-300">Quiz</a></li>
+                    <li><a href="https://it.wikipedia.org/wiki/Divina_Commedia" target="_blank"  class="text-gray-400 hover:text-white transition duration-300">Approfondimenti</a></li>
+                    <li><button onclick="downloadTutto()" class="text-gray-400 hover:text-white transition duration-300 text-left w-full">Download PDF</button></li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-8 text-center text-gray-400 text-sm">
+            <p>© 2025 La Divina Commedia. Tutti i diritti riservati.</p>
+            <p class="mt-2">Sviluppato per scopi educativi.</p>
+        </div>
+    </div>
+</footer>
+
+
+<!-- Scroll Top Button -->
+<button id="scrollTopBtn" class="scroll-top bg-inferno hover:bg-red-800 text-white p-3 rounded-full shadow-lg transition-all">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+    <!-- JavaScript -->
+    <script>
+
+function downloadTutto() {
+    const pdfUrl = 'assets/la divina commedia.pdf';
+
+    // Apre il PDF in una nuova scheda
+    window.open(pdfUrl, '_blank');
+
+}
+
+
+        // Toggle Mobile Menu
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const navMenu = document.getElementById('nav-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            navMenu.classList.toggle('hidden');
+        });
+
+        // Scroll to Top Button
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        
+        window.onscroll = function() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollTopBtn.style.display = "block";
+            } else {
+                scrollTopBtn.style.display = "none";
+            }
+        };
+        
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth Scrolling per gli ancoraggi interni
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animazione per le sezioni al caricamento
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeInElements = document.querySelectorAll('section');
+            
+            const fadeInObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        fadeInObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeInElements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                fadeInObserver.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>

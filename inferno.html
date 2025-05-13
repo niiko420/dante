@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inferno | La Divina Commedia</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+
+        :root {
+            --inferno: #aa0000;
+            --main-bg: #f3f4f6;
+            --secondary-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--main-bg);
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/inferno-bg.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .text-inferno { color: var(--inferno); }
+        .border-inferno { border-color: var(--inferno); }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: currentColor;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .scroll-top {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            transition: opacity 0.3s;
+        }
+
+        .card-transition {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-transition:hover {
+            transform: translateY(-5px);
+        }
+
+        .bg-uniform-light {
+            background-color: var(--secondary-bg);
+        }
+
+        .bg-uniform-dark {
+            background-color: var(--main-bg);
+        }
+
+        .canto-nav {
+            scroll-margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header / Navbar -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-3 flex flex-wrap items-center justify-between">
+            <div class="flex items-center">
+                <a href="index.html" class="font-semibold text-xl md:text-2xl font-serif tracking-tight">
+                    Divina Commedia
+                </a>
+            </div>
+            
+            <button id="mobile-menu-button" class="md:hidden flex items-center px-3 py-2 border rounded text-gray-700 border-gray-700 hover:text-gray-900 hover:border-gray-900">
+                <svg class="h-3 w-3 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <title>Menu</title>
+                    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+                </svg>
+            </button>
+            
+            <div id="nav-menu" class="hidden md:flex md:items-center w-full md:w-auto">
+                <div class="md:flex-grow text-center md:text-left">
+                    <a href="index.html" class="block mt-4 md:inline-block md:mt-0 mr-6 nav-link text-gray-700 hover:text-gray-900">
+                        Home
+                    </a>
+                    <a href="#struttura" class="block mt-4 md:inline-block md:mt-0 mr-6 nav-link text-inferno hover:text-red-800 font-medium">
+                        Inferno
+                    </a>
+                    <a href="purgatorio.html" class="block mt-4 md:inline-block md:mt-0 mr-6 nav-link text-gray-700 hover:text-gray-900">
+                        Purgatorio
+                    </a>
+                    <a href="paradiso.html" class="block mt-4 md:inline-block md:mt-0 mr-6 nav-link text-gray-700 hover:text-gray-900">
+                        Paradiso
+                    </a>
+                    
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+<!-- Hero Section con ombra più leggera -->
+<section class="text-white py-16 md:py-24" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/simbolismo inferno.jpg'); background-size: cover; background-position: center;">
+    <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 text-white [filter:drop-shadow(0_1px_2px_rgba(0,0,0,0.3))]">Inferno</h1>
+        <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto text-white [filter:drop-shadow(0_1px_2px_rgba(0,0,0,0.3))]">La prima cantica della Divina Commedia, il viaggio di Dante attraverso i nove cerchi dell'Inferno</p>
+        <a href="#introduzione" class="inline-block bg-white text-gray-900 hover:bg-gray-200 px-5 py-2 rounded-lg font-medium transition duration-300 text-lg">
+            Inizia il viaggio
+        </a>
+    </div>
+</section>
+
+
+    <!-- Introduzione -->
+    <section id="introduzione" class="py-16 bg-uniform-light">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-2/5 mb-6 md:mb-0 md:pr-8">
+                    <img src="img/struttura inferno.jpg" alt="Illustrazione dell'Inferno dantesco" class="rounded-lg shadow-lg w-full max-w-md mx-auto">
+                </div>
+                <div class="md:w-3/5">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">L'Inferno di Dante</h2>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        L'<strong class="text-inferno">Inferno</strong> è la prima delle tre cantiche della Divina Commedia, composta da 34 canti (il primo funge da proemio all'intera opera). Dante descrive il suo viaggio attraverso i nove cerchi dell'Inferno, guidato dal poeta Virgilio.
+                    </p>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        La struttura dell'Inferno è una voragine a forma di cono rovesciato, formatasi quando Lucifero fu precipitato dal cielo. È suddiviso in nove cerchi, ognuno dedicato a una categoria di peccatori, con pene che diventano più severe man mano che si scende verso il basso.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed">
+                        Dante incontra numerosi personaggi storici e mitologici, ciascuno punito secondo la legge del <em>contrappasso</em>, per cui la pena rispecchia il peccato commesso in vita. L'Inferno rappresenta il regno della dannazione eterna, dove le anime sono separate da Dio.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Struttura dell'Inferno -->
+    <section id="struttura" class="py-16 bg-uniform-dark">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center">Struttura dell'Inferno</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Antinferno -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-inferno">
+                    <h3 class="text-xl font-bold mb-3 text-inferno">Antinferno</h3>
+                    <p class="text-gray-700 mb-2">Gli ignavi, coloro che in vita non fecero né il bene né il male.</p>
+                    <p class="text-sm text-gray-500">Canto I - Proemio</p>
+                </div>
+                
+                <!-- Prima zona -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-inferno">
+                    <h3 class="text-xl font-bold mb-3 text-inferno">Primo Cerchio - Limbo</h3>
+                    <p class="text-gray-700 mb-2">I non battezzati e i virtuosi pagani.</p>
+                    <p class="text-sm text-gray-500">Canto IV</p>
+                </div>
+                
+                <!-- Seconda zona -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-inferno">
+                    <h3 class="text-xl font-bold mb-3 text-inferno">Secondo Cerchio</h3>
+                    <p class="text-gray-700 mb-2">I lussuriosi, travolti dalla bufera.</p>
+                    <p class="text-sm text-gray-500">Canto V</p>
+                </div>
+                
+                <!-- Terza zona -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-inferno">
+                    <h3 class="text-xl font-bold mb-3 text-inferno">Terzo Cerchio</h3>
+                    <p class="text-gray-700 mb-2">I golosi, tormentati da pioggia e grandine.</p>
+                    <p class="text-sm text-gray-500">Canto VI</p>
+                </div>
+                
+                <!-- Quarta zona -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-inferno">
+                    <h3 class="text-xl font-bold mb-3 text-inferno">Quarto Cerchio</h3>
+                    <p class="text-gray-700 mb-2">Gli avari e i prodighi, che spingono pesanti massi.</p>
+                    <p class="text-sm text-gray-500">Canto VII</p>
+                </div>
+                
+                <!-- Quinta zona -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-inferno">
+                    <h3 class="text-xl font-bold mb-3 text-inferno">Quinto Cerchio</h3>
+                    <p class="text-gray-700 mb-2">Gli iracondi e gli accidiosi, immersi nella palude Stige.</p>
+                    <p class="text-sm text-gray-500">Canti VII-VIII</p>
+                </div>
+                
+                <!-- Sesta zona -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-inferno">
+                    <h3 class="text-xl font-bold mb-3 text-inferno">Sesto Cerchio</h3>
+                    <p class="text-gray-700 mb-2">Gli eretici, sepolti in tombe infuocate.</p>
+                    <p class="text-sm text-gray-500">Canti IX-XI</p>
+                </div>
+                
+                <!-- Settima zona -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-inferno">
+                    <h3 class="text-xl font-bold mb-3 text-inferno">Settimo Cerchio</h3>
+                    <p class="text-gray-700 mb-2">I violenti, divisi in tre gironi.</p>
+                    <p class="text-sm text-gray-500">Canti XII-XVII</p>
+                </div>
+                
+                <!-- Ottava zona -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-inferno">
+                    <h3 class="text-xl font-bold mb-3 text-inferno">Ottavo Cerchio</h3>
+                    <p class="text-gray-700 mb-2">I fraudolenti, in diete bolge.</p>
+                    <p class="text-sm text-gray-500">Canti XVIII-XXX</p>
+                </div>
+                
+                <!-- Nona zona -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-inferno">
+                    <h3 class="text-xl font-bold mb-3 text-inferno">Nono Cerchio</h3>
+                    <p class="text-gray-700 mb-2">I traditori, immersi nel ghiaccio.</p>
+                    <p class="text-sm text-gray-500">Canti XXXI-XXXIV</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lista Canti -->
+    <section class="py-16 bg-uniform-light">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center">Tutti i Canti dell'Inferno</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Canto I -->
+                <div id="canto1" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-inferno">Canto I - Proemio</h3>
+                    <p class="text-gray-700 mb-4">Dante si smarrisce nella selva oscura e incontra Virgilio, che gli propone di guidarlo attraverso l'Inferno e il Purgatorio.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-136</span>
+                    </div>
+                </div>
+                
+                <!-- Canto II -->
+                <div id="canto2" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-inferno">Canto II</h3>
+                    <p class="text-gray-700 mb-4">Dante esita davanti al viaggio, ma Virgilio gli rivela che è stato inviato da Beatrice per salvarlo.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-142</span>
+                    </div>
+                </div>
+                
+                <!-- Canto III -->
+                <div id="canto3" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-inferno">Canto III</h3>
+                    <p class="text-gray-700 mb-4">La porta dell'Inferno e l'Antinferno con gli ignavi. Attraversamento del fiume Acheronte con Caronte.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-151</span>
+                    </div>
+                </div>
+                
+                <!-- Canto IV -->
+                <div id="canto4" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-inferno">Canto IV</h3>
+                    <p class="text-gray-700 mb-4">Il Limbo: i non battezzati e i grandi spiriti dell'antichità, tra cui Omero, Orazio, Ovidio e Lucano.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-151</span>
+                    </div>
+                </div>
+                
+                <!-- Canto V -->
+                <div id="canto5" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-inferno">Canto V</h3>
+                    <p class="text-gray-700 mb-4">Secondo cerchio: i lussuriosi. Incontro con Minosse e con Paolo e Francesca.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-142</span>
+                    </div>
+                </div>
+                
+                <!-- Canto VI -->
+                <div id="canto6" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-inferno">Canto VI</h3>
+                    <p class="text-gray-700 mb-4">Terzo cerchio: i golosi, puniti sotto una pioggia fetida. Incontro con Ciacco.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-115</span>
+                    </div>
+                </div>
+                
+                <!-- Canto VII -->
+                <div id="canto7" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-inferno">Canto VII</h3>
+                    <p class="text-gray-700 mb-4">Quarto cerchio: avari e prodighi. Quinto cerchio: iracondi e accidiosi nella palude Stige.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-130</span>
+                    </div>
+                </div>
+                
+                <!-- Canto VIII -->
+                <div id="canto8" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-inferno">Canto VIII</h3>
+                    <p class="text-gray-700 mb-4">Arrivo alla città di Dite. Filippo Argenti. I diavoli impediscono l'ingresso a Dante e Virgilio.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-130</span>
+                    </div>
+                </div>
+                
+                <!-- Canto IX -->
+                <div id="canto9" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-inferno">Canto IX</h3>
+                    <p class="text-gray-700 mb-4">Intervento divino permette l'ingresso a Dite. Le Erinni e Medusa. Sesto cerchio: gli eretici.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-133</span>
+                    </div>
+                </div>
+                
+                <!-- Canto X -->
+                <div id="canto10" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-inferno">Canto X</h3>
+                    <p class="text-gray-700 mb-4">Incontro con Farinata degli Uberti e Cavalcante de' Cavalcanti. Profezia sull'esilio di Dante.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-136</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XI -->
+                <div id="canto11" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-inferno">Canto XI</h3>
+                    <p class="text-gray-700 mb-4">Descrizione della struttura dell'Inferno e classificazione dei peccati secondo Aristotele.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-115</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XII -->
+                <div id="canto12" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-inferno">Canto XII</h3>
+                    <p class="text-gray-700 mb-4">Settimo cerchio, primo girone: i violenti contro il prossimo. Il Minotauro e i centauri.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-139</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XIII -->
+                <div id="canto13" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-inferno">Canto XIII</h3>
+                    <p class="text-gray-700 mb-4">Secondo girone: i violenti contro se stessi (suicidi e scialacquatori). Incontro con Pier delle Vigne.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-151</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XIV -->
+                <div id="canto14" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-inferno">Canto XIV</h3>
+                    <p class="text-gray-700 mb-4">Terzo girone: i violenti contro Dio (bestemmiatori). Il fiume di sangue e Capaneo.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-142</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XV -->
+                <div id="canto15" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-inferno">Canto XV</h3>
+                    <p class="text-gray-700 mb-4">Incontro con Brunetto Latini. I violenti contro natura (sodomiti).</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-124</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XVI -->
+                <div id="canto16" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-inferno">Canto XVI</h3>
+                    <p class="text-gray-700 mb-4">Incontro con tre fiorentini: Guido Guerra, Tegghiaio Aldobrandi e Jacopo Rusticucci.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-136</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XVII -->
+                <div id="canto17" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-inferno">Canto XVII</h3>
+                    <p class="text-gray-700 mb-4">I violenti contro l'arte (usurai). Discesa sull'ali di Gerione all'ottavo cerchio.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-133</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XVIII -->
+                <div id="canto18" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-inferno">Canto XVIII</h3>
+                    <p class="text-gray-700 mb-4">Ottavo cerchio, prima e seconda bolgia: ruffiani e seduttori, adulatori.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-136</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XIX -->
+                <div id="canto19" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-inferno">Canto XIX</h3>
+                    <p class="text-gray-700 mb-4">Terza bolgia: simoniaci. Incontro con papa Niccolò III.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-133</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XX -->
+<div id="canto20" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-inferno">Canto XX</h3>
+    <p class="text-gray-700 mb-4">Quarta bolgia: indovini e maghi, che camminano con la testa rivolta all'indietro. Incontro con Anfiarao, Tiresia e Manto.</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-130</span>
+    </div>
+</div>
+
+<!-- Canto XXI -->
+<div id="canto21" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-inferno">Canto XXI</h3>
+    <p class="text-gray-700 mb-4">Quinta bolgia: barattieri immersi nella pece bollente. I diavoli Malebranche e Malacoda.</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-139</span>
+    </div>
+</div>
+
+<!-- Canto XXII -->
+<div id="canto22" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-inferno">Canto XXII</h3>
+    <p class="text-gray-700 mb-4">Ancora i barattieri. Ciampolo di Navarra e l'inganno ai diavoli.</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-151</span>
+    </div>
+</div>
+
+<!-- Canto XXIII -->
+<div id="canto23" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-inferno">Canto XXIII</h3>
+    <p class="text-gray-700 mb-4">Sesta bolgia: ipocriti, che indossano cappe di piombo dorate. Incontro con Catalano e Loderingo.</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-148</span>
+    </div>
+</div>
+
+<!-- Canto XXIV -->
+<div id="canto24" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-inferno">Canto XXIV</h3>
+    <p class="text-gray-700 mb-4">Settima bolgia: ladri, tormentati dai serpenti. Incontro con Vanni Fucci.</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-151</span>
+    </div>
+</div>
+
+<!-- Canto XXV -->
+<div id="canto25" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-inferno">Canto XXV</h3>
+    <p class="text-gray-700 mb-4">Ancora i ladri. Metamorfosi di Cianfa, Agnello, Buoso e altri.</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-151</span>
+    </div>
+</div>
+
+<!-- Canto XXVI -->
+<div id="canto26" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-inferno">Canto XXVI</h3>
+    <p class="text-gray-700 mb-4">Ottava bolgia: consiglieri fraudolenti, avvolti dalle fiamme. Ulisse e Diomede.</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-142</span>
+    </div>
+</div>
+
+<!-- Canto XXVII -->
+<div id="canto27" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-inferno">Canto XXVII</h3>
+    <p class="text-gray-700 mb-4">Ancora i consiglieri fraudolenti. Guido da Montefeltro e l'inganno di papa Bonifacio VIII.</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-136</span>
+    </div>
+</div>
+
+<!-- Canto XXVIII -->
+<div id="canto28" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-inferno">Canto XXVIII</h3>
+    <p class="text-gray-700 mb-4">Nona bolgia: seminatori di discordie, mutilati. Maometto, Alì, Pier da Medicina, Curione e Bertran de Born.</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-142</span>
+    </div>
+</div>
+
+<!-- Canto XXIX -->
+<div id="canto29" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-inferno">Canto XXIX</h3>
+    <p class="text-gray-700 mb-4">Decima bolgia: falsari, afflitti da malattie. Geri del Bello e gli alchimisti.</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-139</span>
+    </div>
+</div>
+
+<!-- Canto XXX -->
+<div id="canto30" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-inferno">Canto XXX</h3>
+    <p class="text-gray-700 mb-4">Ancora i falsari: falsificatori di persone, di monete e di parole. Maestro Adamo e Sinone.</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-148</span>
+    </div>
+</div>
+
+<!-- Canto XXXI -->
+<div id="canto31" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-inferno">Canto XXXI</h3>
+    <p class="text-gray-700 mb-4">Passaggio all'ultimo cerchio. I giganti: Nembrot, Fialte e Anteo.</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-145</span>
+    </div>
+</div>
+
+<!-- Canto XXXII -->
+<div id="canto32" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-inferno">Canto XXXII</h3>
+    <p class="text-gray-700 mb-4">Nono cerchio: i traditori, immersi nel ghiaccio. Caina (traditori dei parenti) e Antenora (traditori della patria).</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-139</span>
+    </div>
+</div>
+
+<!-- Canto XXXIII -->
+<div id="canto33" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-inferno">Canto XXXIII</h3>
+    <p class="text-gray-700 mb-4">Conte Ugolino e la sua tragica morte. Tolomea (traditori degli ospiti). Frate Alberigo.</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-157</span>
+    </div>
+</div>
+
+<!-- Canto XXXIV -->
+<div id="canto34" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-inferno">Canto XXXIV</h3>
+    <p class="text-gray-700 mb-4">Giudecca (traditori dei benefattori). Lucifero al centro dell'Inferno con Giuda, Bruto e Cassio. Uscita dall'Inferno.</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-139</span>
+    </div>
+</div>
+<div class="text-center mt-12">
+    <button onclick="downloadPDF()" 
+    class="bg-red-800 text-white font-medium py-3 px-6 rounded-lg inline-flex items-center hover:bg-red-900 transition duration-300">
+<i class="fas fa-file-pdf mr-2"></i> Scarica tutti i canti in PDF
+</button>
+</div>
+</div>
+</section>
+
+    <!-- Contrappasso Section -->
+    <section class="py-16 bg-uniform-dark">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Il Contrappasso</h2>
+            <div class="bg-uniform-light rounded-lg shadow-lg p-6 md:p-8">
+                <p class="text-gray-700 mb-4 leading-relaxed">
+                    Elemento centrale nella costruzione dell'Inferno dantesco è il <strong class="text-inferno">contrappasso</strong>, principio secondo cui la pena inflitta ai dannati rispecchia, per analogia o per contrasto, il peccato commesso in vita.
+                </p>
+                <p class="text-gray-700 mb-4 leading-relaxed">
+                    La parola deriva dal latino <em>contra</em> e <em>patior</em> (soffrire il contrario). È la legge del taglione elevata a sistema cosmico: la pena deve corrispondere alla colpa.
+                </p>
+                <div class="my-6 border-l-4 border-inferno pl-4 py-2">
+                    <p class="text-gray-700 italic">"...così osservai la legge del contrappasso."</p>
+                    <p class="text-sm text-gray-500 mt-1">Inferno, Canto XXVIII, v. 142</p>
+                </div>
+                <p class="text-gray-700 leading-relaxed">
+                    Esempi significativi di contrappasso:
+                </p>
+                <ul class="list-disc list-inside text-gray-700 space-y-2 mt-4">
+                    <li>I lussuriosi, che in vita si lasciarono trasportare dalla passione, sono ora trasportati senza tregua da una bufera infernale.</li>
+                    <li>Gli indovini, che in vita pretesero di vedere il futuro, ora camminano con la testa rivoltata all'indietro, impossibilitati a guardare avanti.</li>
+                    <li>I seminatori di discordie, che in vita divisero ciò che era unito, sono ora essi stessi divisi e mutilati.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personaggi Principali -->
+    <section class="py-16 bg-uniform-light">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center">Personaggi Principali</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Virgilio -->
+                <div class="bg-uniform-dark rounded-lg shadow-md p-6 border-l-4 border-inferno">
+                    <h3 class="text-xl font-bold mb-3 text-inferno">Virgilio</h3>
+                    <p class="text-gray-700 mb-4">
+                        Poeta latino dell'età augustea (70-19 a.C.), autore dell'Eneide. Rappresenta la ragione umana e guiderà Dante attraverso l'Inferno e il Purgatorio.
+                    </p>
+                    <p class="text-gray-700 italic text-sm">
+                        "Tu se' lo mio maestro e 'l mio autore,<br>
+                        tu se' solo colui da cu' io tolsi<br>
+                        lo bello stilo che m'ha fatto onore."
+                    </p>
+                    <p class="text-right text-gray-500 text-sm mt-2">Inferno, Canto I, vv. 85-87</p>
+                </div>
+
+                <!-- Paolo e Francesca -->
+                <div class="bg-uniform-dark rounded-lg shadow-md p-6 border-l-4 border-inferno">
+                    <h3 class="text-xl font-bold mb-3 text-inferno">Paolo e Francesca</h3>
+                    <p class="text-gray-700 mb-4">
+                        Amanti sorpresi e uccisi dal marito di Francesca, Gianciotto Malatesta. Sono tra i lussuriosi nel secondo cerchio.
+                    </p>
+                    <p class="text-gray-700 italic text-sm">
+                        "Amor, ch'al cor gentil ratto s'apprende,<br>
+                        prese costui de la bella persona<br>
+                        che mi fu tolta; e 'l modo ancor m'offende."
+                    </p>
+                    <p class="text-right text-gray-500 text-sm mt-2">Inferno, Canto V, vv. 100-102</p>
+                </div>
+
+                <!-- Farinata degli Uberti -->
+                <div class="bg-uniform-dark rounded-lg shadow-md p-6 border-l-4 border-inferno">
+                    <h3 class="text-xl font-bold mb-3 text-inferno">Farinata degli Uberti</h3>
+                    <p class="text-gray-700 mb-4">
+                        Nobile ghibellino fiorentino, incontrato da Dante tra gli eretici. Nonostante la dannazione, mantiene il suo orgoglio aristocratico.
+                    </p>
+                    <p class="text-gray-700 italic text-sm">
+                        "Ed el s'ergea col petto e con la fronte<br>
+                        com'avesse l'inferno a gran dispitto."
+                    </p>
+                    <p class="text-right text-gray-500 text-sm mt-2">Inferno, Canto X, vv. 35-36</p>
+                </div>
+
+                <!-- Ulisse -->
+                <div class="bg-uniform-dark rounded-lg shadow-md p-6 border-l-4 border-inferno">
+                    <h3 class="text-xl font-bold mb-3 text-inferno">Ulisse</h3>
+                    <p class="text-gray-700 mb-4">
+                        L'eroe greco, punito tra i consiglieri fraudolenti per l'inganno del cavallo di Troia. Racconta il suo ultimo viaggio oltre le colonne d'Ercole.
+                    </p>
+                    <p class="text-gray-700 italic text-sm">
+                        "Considerate la vostra semenza:<br>
+                        fatti non foste a viver come bruti,<br>
+                        ma per seguir virtute e canoscenza."
+                    </p>
+                    <p class="text-right text-gray-500 text-sm mt-2">Inferno, Canto XXVI, vv. 118-120</p>
+                </div>
+
+                <!-- Conte Ugolino -->
+                <div class="bg-uniform-dark rounded-lg shadow-md p-6 border-l-4 border-inferno">
+                    <h3 class="text-xl font-bold mb-3 text-inferno">Conte Ugolino</h3>
+                    <p class="text-gray-700 mb-4">
+                        Nobile pisano condannato a morire di fame con i figli e i nipoti. È tra i traditori della patria nell'Antenora.
+                    </p>
+                    <p class="text-gray-700 italic text-sm">
+                        "Poscia, più che 'l dolor, poté 'l digiuno."
+                    </p>
+                    <p class="text-right text-gray-500 text-sm mt-2">Inferno, Canto XXXIII, v. 75</p>
+                </div>
+
+                <!-- Lucifero -->
+                <div class="bg-uniform-dark rounded-lg shadow-md p-6 border-l-4 border-inferno">
+                    <h3 class="text-xl font-bold mb-3 text-inferno">Lucifero</h3>
+                    <p class="text-gray-700 mb-4">
+                        L'angelo ribelle, conficcato al centro della Terra. Ha tre volti e in ciascuna bocca tormenta un traditore: Giuda, Bruto e Cassio.
+                    </p>
+                    <p class="text-gray-700 italic text-sm">
+                        "Da questa parte cadde giù dal cielo;<br>
+                        e la terra, che pria di qua si sporse,<br>
+                        per paura di lui fé del mar velo."
+                    </p>
+                    <p class="text-right text-gray-500 text-sm mt-2">Inferno, Canto XXXIV, vv. 121-123</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Iscrizione Porta dell'Inferno con immagine -->
+<section class="py-16 bg-uniform-dark">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">L'iscrizione sulla porta dell'Inferno</h2>
+        <div class="bg-uniform-light rounded-lg shadow-lg p-6 md:p-8">
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <!-- Immagine affiancata (ora a sinistra) -->
+                <div class="md:w-1/2 order-1 md:order-none">
+                    <img src="img/porta inferno.jpg" alt="Rappresentazione artistica della porta dell'Inferno" 
+                         class="rounded-lg shadow-md w-full h-auto max-h-96 object-cover">
+                </div>
+                
+                <!-- Testo della strofa (ora a destra) -->
+                <div class="md:w-1/2 text-center md:text-left order-2 md:order-none">
+                    <p class="text-gray-800 italic text-lg md:text-xl leading-relaxed font-serif">
+                        "Per me si va ne la città dolente,<br>
+                        per me si va ne l'etterno dolore,<br>
+                        per me si va tra la perduta gente.<br><br>
+                        
+                        Giustizia mosse il mio alto fattore;<br>
+                        fecemi la divina podestate,<br>
+                        la somma sapïenza e 'l primo amore.<br><br>
+                        
+                        Dinanzi a me non fuor cose create<br>
+                        se non etterne, e io etterna duro.<br>
+                        Lasciate ogne speranza, voi ch'intrate."
+                    </p>
+                    <p class="text-right text-inferno font-semibold mt-4">Inferno, Canto III, vv. 1-9</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!--Footer-->
+<footer class="bg-gray-900 text-white py-10">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <h2 class="text-2xl font-bold mb-4 md:mb-0">La Divina Commedia</h2>
+            
+        </div>
+        <hr class="my-6 border-gray-700">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Navigazione</h3>
+                <ul class="space-y-2">
+                    <li><a href="index.html" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                    <li><a href="#introduzione" class="text-gray-400 hover:text-white transition duration-300">Introduzione</a></li>
+                    <li><a href="#struttura" class="text-gray-400 hover:text-white transition duration-300">Struttura</a></li>
+                    <li><a href="purgatorio.html" class="text-gray-400 hover:text-white transition duration-300">Purgatorio</a></li>
+                    <li><a href="paradiso.html" class="text-gray-400 hover:text-white transition duration-300">Paradiso</a></li>
+                    <li><a href="biografia.html" class="text-gray-400 hover:text-white transition duration-300">Biografia</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Contenuti correlati</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="biografia.html" 
+                               rel="noopener noreferrer"
+                               class="text-gray-400 hover:text-white transition duration-300">
+                                Dante Alighieri
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://it.wikipedia.org/wiki/Letteratura_medievale" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="text-gray-400 hover:text-white transition duration-300">
+                                Letteratura medievale
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://it.wikipedia.org/wiki/Storia_di_Firenze" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="text-gray-400 hover:text-white transition duration-300">
+                                Storia di Firenze
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Risorse</h3>
+                <ul class="space-y-2">
+                    <li><a href="quiz.html" class="text-gray-400 hover:text-white transition duration-300">Quiz</a></li>
+                    <li><a href="https://it.wikipedia.org/wiki/Divina_Commedia" target="_blank"  class="text-gray-400 hover:text-white transition duration-300">Approfondimenti</a></li>
+                    <li><button onclick="downloadTutto()" class="text-gray-400 hover:text-white transition duration-300 text-left w-full">Download PDF</button></li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-8 text-center text-gray-400 text-sm">
+            <p>© 2025 La Divina Commedia. Tutti i diritti riservati.</p>
+            <p class="mt-2">Sviluppato per scopi educativi.</p>
+        </div>
+    </div>
+</footer>
+
+
+<!-- Scroll Top Button -->
+<button id="scrollTopBtn" class="scroll-top bg-inferno hover:bg-red-800 text-white p-3 rounded-full shadow-lg transition-all">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+
+    <!-- JavaScript -->
+    <script>
+        function downloadPDF() {
+        // URL del PDF da scaricare (sostituire con il percorso effettivo del file)
+        const pdfUrl = 'assets/inferno.pdf';
+        
+        window.open(pdfUrl,'_blank');
+    }
+
+    function downloadTutto() {
+    const pdfUrl = 'assets/la divina commedia.pdf';
+
+    // Apre il PDF in una nuova scheda
+    window.open(pdfUrl, '_blank');
+    }
+
+
+    
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const navMenu = document.getElementById('nav-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            navMenu.classList.toggle('hidden');
+        });
+        
+        // Scroll to Top Button
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        
+        window.addEventListener('scroll', () => {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                scrollTopBtn.style.display = 'block';
+                scrollTopBtn.style.opacity = '1';
+            } else {
+                scrollTopBtn.style.opacity = '0';
+                setTimeout(() => {
+                    if (document.body.scrollTop <= 200 && document.documentElement.scrollTop <= 200) {
+                        scrollTopBtn.style.display = 'none';
+                    }
+                }, 300);
+            }
+        });
+        
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

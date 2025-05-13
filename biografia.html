@@ -1,0 +1,554 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biografia di Dante Alighieri | La Divina Commedia</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+
+        :root {
+            --inferno: #aa0000;
+            --purgatorio: #0066cc;
+            --paradiso: #f5bd1f;
+            --main-bg: #f3f4f6;
+            --secondary-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--main-bg);
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/api/placeholder/1000/500');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: currentColor;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .scroll-top {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            transition: opacity 0.3s;
+        }
+
+        .card-transition {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-transition:hover {
+            transform: translateY(-5px);
+        }
+
+        .bg-uniform-light {
+            background-color: var(--secondary-bg);
+        }
+
+        .bg-uniform-dark {
+            background-color: var(--main-bg);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1px;
+            height: 100%;
+            background-color: #d1d5db;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: -0.5rem;
+            top: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background-color: var(--purgatorio);
+        }
+        
+        .timeline-date {
+            font-weight: 600;
+            color: var(--purgatorio);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header / Navbar -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-3 flex flex-wrap items-center justify-between">
+            <div class="flex items-center">
+                <a href="index.html" class="font-semibold text-xl md:text-2xl font-serif tracking-tight">
+                    Divina Commedia
+                </a>
+            </div>
+            
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-button" class="md:hidden flex items-center px-3 py-2 border rounded text-gray-700 border-gray-700 hover:text-gray-900 hover:border-gray-900">
+                <svg class="h-3 w-3 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <title>Menu</title>
+                    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+                </svg>
+            </button>
+            
+            <!-- Navigation Links -->
+            <div id="nav-menu" class="hidden md:flex md:items-center w-full md:w-auto">
+                <div class="md:flex-grow text-center md:text-left">
+                    <a href="index.html" class="block mt-4 md:inline-block md:mt-0 mr-6 nav-link text-gray-700 hover:text-gray-900">
+                        Home
+                    </a>
+                    <a href="biografia.html" class="block mt-4 md:inline-block md:mt-0 mr-6 nav-link text-gray-700 hover:text-gray-900 font-semibold ">
+                        Biografia
+                    </a>
+                    <a href="timeline.html" class="block mt-4 md:inline-block md:mt-0 mr-6 nav-link text-gray-700 hover:text-gray-900">
+                        Timeline
+                    </a>
+                    <a href="quiz.html" class="block mt-4 md:inline-block md:mt-0 mr-6 nav-link text-gray-700 hover:text-gray-900">
+                        Quiz
+                    </a>
+                    <a href="chatbot.html" class="block mt-4 md:inline-block md:mt-0 nav-link text-gray-700 hover:text-gray-900">
+                        Chatbot
+                    </a>
+                   
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero-bg text-white py-16 md:py-24" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1000/500'); background-color: #A0522D;">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 text-white drop-shadow-lg">Biografia di Dante Alighieri</h1>
+            <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto text-white drop-shadow-lg">La vita del Sommo Poeta, dalla nascita a Firenze all'esilio, fino alla morte a Ravenna</p>
+        </div>
+    </section>
+    
+    <!-- Introduzione -->
+    <section class="py-16 bg-uniform-light">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-2/5 mb-6 md:mb-0 md:pr-8">
+                    <img src="img/dante.png" alt="Ritratto di Dante Alighieri" class="rounded-lg shadow-lg w-full max-w-md mx-auto">
+                </div>
+                <div class="md:w-3/5">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Il Sommo Poeta</h2>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        <strong>Dante Alighieri</strong> (Firenze, maggio-giugno 1265 – Ravenna, 14 settembre 1321) è stato un poeta, scrittore e politico italiano, considerato il padre della lingua italiana. La sua opera principale, la <strong>Divina Commedia</strong>, è unanimemente ritenuta la più grande opera scritta in italiano e uno dei più importanti capolavori della letteratura mondiale.
+                    </p>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        Dante nacque a Firenze da una famiglia di piccola nobiltà appartenente alla fazione guelfa. La sua vita fu profondamente segnata dalla complessa situazione politica fiorentina dell'epoca, che lo condusse all'esilio dalla sua amata città nel 1302, in seguito all'ascesa al potere della fazione avversa dei Guelfi Neri.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed">
+                        Durante l'esilio, Dante compose la maggior parte delle sue opere, compresa la Divina Commedia, vagando tra varie corti italiane alla ricerca di ospitalità e protezione. Morì a Ravenna, dove è tuttora sepolto, mentre tornava da un'ambasceria a Venezia.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cronologia della vita -->
+    <section class="py-16 bg-uniform-dark">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center">Cronologia della vita di Dante</h2>
+            
+            <div class="max-w-3xl mx-auto">
+                <!-- 1265-1274 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">1265</div>
+                    <h3 class="text-xl font-bold mb-2">Nascita a Firenze</h3>
+                    <p class="text-gray-700">
+                        Dante nasce a Firenze tra maggio e giugno, da Alighiero di Bellincione e Bella, in una famiglia di piccola nobiltà guelfa. La data esatta della sua nascita rimane sconosciuta.
+                    </p>
+                </div>
+                
+                <!-- 1274 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">1274</div>
+                    <h3 class="text-xl font-bold mb-2">Il primo incontro con Beatrice</h3>
+                    <p class="text-gray-700">
+                        All'età di nove anni, Dante incontra per la prima volta Beatrice Portinari, figura che diventerà fondamentale nella sua vita e nella sua opera poetica. Questo incontro segnerà profondamente la sua sensibilità artistica.
+                    </p>
+                </div>
+                
+                <!-- 1277-1283 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">1277-1283</div>
+                    <h3 class="text-xl font-bold mb-2">Formazione e primi studi</h3>
+                    <p class="text-gray-700">
+                        Dopo la morte prematura della madre, Dante riceve un'educazione classica e filosofica. Studia grammatica, retorica e filosofia. Inizia a frequentare l'ambiente dei poeti fiorentini, tra cui Guido Cavalcanti, con cui stringe una profonda amicizia.
+                    </p>
+                </div>
+                
+                <!-- 1283-1290 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">1283-1290</div>
+                    <h3 class="text-xl font-bold mb-2">Attività poetica giovanile</h3>
+                    <p class="text-gray-700">
+                        Dante si dedica alla poesia, aderendo allo stile del "dolce stil novo", un movimento poetico innovativo. Scrive poesie d'amore dedicate a Beatrice e stringe amicizie con diversi letterati dell'epoca.
+                    </p>
+                </div>
+                
+                <!-- 1290 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">1290</div>
+                    <h3 class="text-xl font-bold mb-2">La morte di Beatrice</h3>
+                    <p class="text-gray-700">
+                        L'8 giugno, Beatrice Portinari muore all'età di ventiquattro anni. Questa perdita provoca in Dante una profonda crisi emotiva e spirituale, che influenzerà tutta la sua produzione letteraria successiva.
+                    </p>
+                </div>
+                
+                <!-- 1292-1294 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">1292-1294</div>
+                    <h3 class="text-xl font-bold mb-2">La Vita Nova</h3>
+                    <p class="text-gray-700">
+                        Dante compone la "Vita Nova", opera in cui raccoglie e commenta le sue poesie giovanili dedicate a Beatrice, narrandone la storia del suo amore spirituale.
+                    </p>
+                </div>
+                
+                <!-- 1295-1300 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">1295-1300</div>
+                    <h3 class="text-xl font-bold mb-2">Impegno politico a Firenze</h3>
+                    <p class="text-gray-700">
+                        Dante si iscrive all'Arte dei Medici e degli Speziali, condizione necessaria per partecipare alla vita politica fiorentina. Ricopre vari incarichi pubblici e nel 1300 viene eletto tra i Priori, la massima carica del governo cittadino.
+                    </p>
+                </div>
+                
+                <!-- 1301-1302 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">1301-1302</div>
+                    <h3 class="text-xl font-bold mb-2">Ambasceria e condanna all'esilio</h3>
+                    <p class="text-gray-700">
+                        Dante viene inviato come ambasciatore presso papa Bonifacio VIII a Roma. Durante la sua assenza, i Guelfi Neri, sostenuti dal papa, prendono il potere a Firenze. Nel gennaio 1302, Dante viene condannato all'esilio con l'accusa di baratteria e opposizione al papa.
+                    </p>
+                </div>
+                
+                <!-- 1304-1307 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">1304-1307</div>
+                    <h3 class="text-xl font-bold mb-2">Primi anni di esilio e opere filosofiche</h3>
+                    <p class="text-gray-700">
+                        Dopo aver tentato inutilmente di rientrare a Firenze con la forza, Dante inizia il suo peregrinare tra le corti dell'Italia settentrionale. Inizia a scrivere il "Convivio", trattato filosofico in volgare, e il "De vulgari eloquentia", trattato linguistico in latino.
+                    </p>
+                </div>
+                
+                <!-- 1308-1313 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">1308-1313</div>
+                    <h3 class="text-xl font-bold mb-2">Speranze politiche e il "De Monarchia"</h3>
+                    <p class="text-gray-700">
+                        Dante ripone le sue speranze di rientro a Firenze nell'imperatore Enrico VII di Lussemburgo. Scrive il "De Monarchia", trattato politico in cui sostiene la necessità di un Impero universale separato dal potere papale. La morte di Enrico VII nel 1313 segna il definitivo tramonto delle speranze di Dante.
+                    </p>
+                </div>
+                
+                <!-- 1313-1321 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">1313-1321</div>
+                    <h3 class="text-xl font-bold mb-2">Ultimi anni e completamento della Commedia</h3>
+                    <p class="text-gray-700">
+                        Dante trova ospitalità presso la corte di Guido Novello da Polenta a Ravenna, dove completa la stesura della Divina Commedia. Iniziata probabilmente nel 1307, l'opera si articola nelle tre cantiche: Inferno, Purgatorio e Paradiso. Negli ultimi anni tiene anche lezioni pubbliche sulla sua poesia.
+                    </p>
+                </div>
+                
+                <!-- 1321 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">1321</div>
+                    <h3 class="text-xl font-bold mb-2">Morte a Ravenna</h3>
+                    <p class="text-gray-700">
+                        Il 14 settembre, di ritorno da un'ambasceria a Venezia per conto del suo protettore Guido Novello da Polenta, Dante muore a Ravenna, probabilmente a causa della malaria contratta durante il viaggio. Viene sepolto con grandi onori nella chiesa di San Francesco.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Le Opere -->
+    <section class="py-16 bg-uniform-light">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center">Le Opere di Dante</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Divina Commedia -->
+                <div class="bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-2xl font-bold mb-3 text-center">La Divina Commedia</h3>
+                    <p class="text-gray-700 mb-4">
+                        Il capolavoro di Dante, composto tra il 1304 e il 1321. È un poema allegorico-didascalico in terzine di endecasillabi a rima incatenata, diviso in tre cantiche: Inferno, Purgatorio e Paradiso. Narra il viaggio immaginario di Dante attraverso i tre regni dell'aldilà.
+                    </p>
+                    <div class="text-center">
+                        <a href="index.html"  class="inline-block border-2 border-purgatorio text-purgatorio hover:bg-blue-50 px-4 py-2 rounded font-medium transition duration-300">
+                            Esplora l'opera
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Vita Nova -->
+                <div class="bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-2xl font-bold mb-3 text-center">Vita Nova</h3>
+                    <p class="text-gray-700 mb-4">
+                        Composta tra il 1292 e il 1294, è un prosimetro (alternanza di prosa e poesia) in cui Dante raccoglie e commenta le sue poesie giovanili dedicate a Beatrice, ricostruendo il percorso del suo amore spirituale per lei.
+                    </p>
+                    <div class="text-center">
+                        <a href="https://it.wikipedia.org/wiki/Vita_nuova" target="blank" class="inline-block border-2 border-purgatorio text-purgatorio hover:bg-blue-50 px-4 py-2 rounded font-medium transition duration-300">
+                            Scopri di più
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- De Vulgari Eloquentia -->
+                <div class="bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-2xl font-bold mb-3 text-center">De Vulgari Eloquentia</h3>
+                    <p class="text-gray-700 mb-4">
+                        Trattato linguistico in latino composto tra il 1303 e il 1305, in cui Dante difende l'uso del volgare come lingua letteraria, analizzando i vari dialetti italiani e proponendo un volgare illustre comune a tutta l'Italia.
+                    </p>
+                    <div class="text-center">
+                        <a href="https://it.wikipedia.org/wiki/De_vulgari_eloquentia" target="blank" class="inline-block border-2 border-purgatorio text-purgatorio hover:bg-blue-50 px-4 py-2 rounded font-medium transition duration-300">
+                            Scopri di più
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Convivio -->
+                <div class="bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-2xl font-bold mb-3 text-center">Convivio</h3>
+                    <p class="text-gray-700 mb-4">
+                        Trattato filosofico in volgare, composto tra il 1304 e il 1307. Dante progettava di commentare 14 canzoni dottrinali, ma ne completò solo quattro. L'opera si proponeva di divulgare la conoscenza filosofica tra coloro che non conoscevano il latino.
+                    </p>
+                    <div class="text-center">
+                        <a href="https://it.wikipedia.org/wiki/Convivio" target="blank"  class="inline-block border-2 border-purgatorio text-purgatorio hover:bg-blue-50 px-4 py-2 rounded font-medium transition duration-300">
+                            Scopri di più
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- De Monarchia -->
+                <div class="bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-2xl font-bold mb-3 text-center">De Monarchia</h3>
+                    <p class="text-gray-700 mb-4">
+                        Trattato politico in latino, scritto tra il 1310 e il 1313. Dante sostiene la necessità di un Impero universale, guidato dall'imperatore, separato e indipendente dal potere papale. L'opera fu messa all'Indice dei libri proibiti nel 1554.
+                    </p>
+                    <div class="text-center">
+                        <a href="https://it.wikipedia.org/wiki/Monarchia_(Dante)" target="blank" class="inline-block border-2 border-purgatorio text-purgatorio hover:bg-blue-50 px-4 py-2 rounded font-medium transition duration-300">
+                            Scopri di più
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Rime -->
+                <div class="bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-2xl font-bold mb-3 text-center">Rime</h3>
+                    <p class="text-gray-700 mb-4">
+                        Raccolta di poesie composte lungo tutta la vita di Dante, dai primi esperimenti giovanili alle più mature riflessioni dell'esilio. Comprendono sonetti, canzoni, ballate e altri componimenti non inclusi nella Vita Nova o nel Convivio.
+                    </p>
+                    <div class="text-center">
+                        <a href="https://it.wikipedia.org/wiki/Le_Rime" target="blank" class="inline-block border-2 border-purgatorio text-purgatorio hover:bg-blue-50 px-4 py-2 rounded font-medium transition duration-300">
+                            Scopri di più
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Influenza culturale -->
+    <section class="py-16 bg-uniform-dark">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center">L'Eredità di Dante</h2>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-3/5 md:pr-8 mb-6 md:mb-0">
+                    <h3 class="text-2xl font-bold mb-4">Influenza culturale</h3>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        L'impatto di Dante sulla cultura mondiale è stato immenso e duraturo. La Divina Commedia ha ispirato generazioni di artisti, scrittori, musicisti e filosofi in tutto il mondo. Dalla lingua italiana alle arti visive, dalla letteratura alla musica, l'eredità dantesca è presente in molteplici forme.
+                    </p>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        <strong>Contributo linguistico:</strong> Dante è considerato il padre della lingua italiana. Con le sue opere, in particolare la Divina Commedia, ha contribuito in modo decisivo alla formazione e alla diffusione del volgare fiorentino come base della lingua italiana moderna.
+                    </p>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        <strong>Influenza letteraria:</strong> La sua opera ha influenzato innumerevoli scrittori in tutto il mondo, tra cui Boccaccio, Petrarca, Chaucer, Milton, Blake, Goethe, Shelley, Byron, Borges e molti altri.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed">
+                        <strong>Ispirazione artistica:</strong> Le scene della Divina Commedia hanno ispirato artisti come Botticelli, Michelangelo, Blake, Doré, Dalí, Rodin e molti altri, che hanno cercato di dare forma visiva alle potenti immagini evocate dal poema.
+                    </p>
+                </div>
+                <div class="md:w-2/5">
+                    <img src="img/quadro.jpg" alt="L'influenza di Dante nell'arte" class="rounded-lg shadow-lg w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Curiosità -->
+    <section class="py-16 bg-uniform-light">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center">Curiosità su Dante</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Curiosità 1 -->
+                <div class="bg-uniform-dark rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-3">Il nome Dante</h3>
+                    <p class="text-gray-700">
+                        "Dante" è in realtà un diminutivo del nome "Durante". Il poeta firmava i suoi documenti come "Durante degli Alighieri", ma preferiva essere chiamato con il diminutivo.
+                    </p>
+                </div>
+                
+                <!-- Curiosità 2 -->
+                <div class="bg-uniform-dark rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-3">La tomba vuota a Firenze</h3>
+                    <p class="text-gray-700">
+                        In Santa Croce a Firenze esiste un cenotafio (tomba vuota) dedicato a Dante. Nonostante i ripetuti tentativi di Firenze di riavere le spoglie del poeta, Ravenna si è sempre rifiutata di restituirle.
+                    </p>
+                </div>
+                
+                <!-- Curiosità 3 -->
+                <div class="bg-uniform-dark rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-3">Dante e la matematica</h3>
+                    <p class="text-gray-700">
+                        Dante aveva un grande interesse per la matematica e l'astronomia. Nella Divina Commedia sono presenti numerosi riferimenti a concetti matematici e astronomici dell'epoca.
+                    </p>
+                </div>
+                
+                <!-- Curiosità 4 -->
+                <div class="bg-uniform-dark rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-3">L'aggettivo "Divina"</h3>
+                    <p class="text-gray-700">
+                        L'aggettivo "Divina" fu aggiunto al titolo del poema solo nel 1555 da Giovanni Boccaccio, in segno di ammirazione per l'opera. Dante aveva semplicemente intitolato la sua opera "Commedia".
+                    </p>
+                </div>
+                
+                <!-- Curiosità 5 -->
+                <div class="bg-uniform-dark rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-3">La condanna a morte</h3>
+                    <p class="text-gray-700">
+                        Dante fu condannato al rogo in contumacia dalle autorità fiorentine. La sentenza prevedeva che, se fosse tornato a Firenze, sarebbe stato bruciato vivo.
+                    </p>
+                </div>
+                
+                <!-- Curiosità 6 -->
+                <div class="bg-uniform-dark rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-3">Dante e la medicina</h3>
+                    <p class="text-gray-700">
+                        Dante era iscritto all'Arte dei Medici e degli Speziali, ma non perché fosse medico, bensì perché questa corporazione accoglieva anche artisti e letterati, che utilizzavano pigmenti venduti dagli speziali.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+                <!--Footer-->
+<footer class="bg-gray-900 text-white py-10">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <h2 class="text-2xl font-bold mb-4 md:mb-0">La Divina Commedia</h2>
+            
+        </div>
+        <hr class="my-6 border-gray-700">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Navigazione</h3>
+                <ul class="space-y-2">
+                    <li><a href="index.html" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                    <li><a href="inferno.html" class="text-gray-400 hover:text-white transition duration-300">Inferno</a></li>
+                    <li><a href="paradiso.html" class="text-gray-400 hover:text-white transition duration-300">Paradiso</a></li>
+                    <li><a href="biografia.html" class="text-gray-400 hover:text-white transition duration-300">Biografia</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Contenuti correlati</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="biografia.html" 
+                               rel="noopener noreferrer"
+                               class="text-gray-400 hover:text-white transition duration-300">
+                                Dante Alighieri
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://it.wikipedia.org/wiki/Letteratura_medievale" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="text-gray-400 hover:text-white transition duration-300">
+                                Letteratura medievale
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://it.wikipedia.org/wiki/Storia_di_Firenze" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="text-gray-400 hover:text-white transition duration-300">
+                                Storia di Firenze
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Risorse</h3>
+                <ul class="space-y-2">
+                    <li><a href="quiz.html" class="text-gray-400 hover:text-white transition duration-300">Quiz</a></li>
+                    <li><a href="https://it.wikipedia.org/wiki/Divina_Commedia" target="_blank"  class="text-gray-400 hover:text-white transition duration-300">Approfondimenti</a></li>
+                    <li><button onclick="downloadTutto()" class="text-gray-400 hover:text-white transition duration-300 text-left w-full">Download PDF</button></li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-8 text-center text-gray-400 text-sm">
+            <p>© 2025 La Divina Commedia. Tutti i diritti riservati.</p>
+            <p class="mt-2">Sviluppato per scopi educativi.</p>
+        </div>
+    </div>
+</footer>
+
+
+<!-- Scroll Top Button -->
+<button id="scrollTopBtn" class="scroll-top bg-inferno hover:bg-red-800 text-white p-3 rounded-full shadow-lg transition-all">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+        <script>
+                function downloadTutto() {
+    const pdfUrl = 'assets/la divina commedia.pdf';
+
+    // Apre il PDF in una nuova scheda
+    window.open(pdfUrl, '_blank');
+    }
+        </script>
+        </body>
+        </html>

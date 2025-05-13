@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paradiso | La Divina Commedia</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+
+        :root {
+            --paradiso: #f5bd1f;
+
+;
+            --main-bg: #f3f4f6;
+            --secondary-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--main-bg);
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/paradiso-bg.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .text-paradiso { color: var(--paradiso); }
+        .border-paradiso { border-color: var(--paradiso); }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: currentColor;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .scroll-top {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            transition: opacity 0.3s;
+        }
+
+        .card-transition {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-transition:hover {
+            transform: translateY(-5px);
+        }
+
+        .bg-uniform-light {
+            background-color: var(--secondary-bg);
+        }
+
+        .bg-uniform-dark {
+            background-color: var(--main-bg);
+        }
+
+        .canto-nav {
+            scroll-margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header / Navbar -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-3 flex flex-wrap items-center justify-between">
+            <div class="flex items-center">
+                <a href="index.html" class="font-semibold text-xl md:text-2xl font-serif tracking-tight">
+                    Divina Commedia
+                </a>
+            </div>
+            
+            <button id="mobile-menu-button" class="md:hidden flex items-center px-3 py-2 border rounded text-gray-700 border-gray-700 hover:text-gray-900 hover:border-gray-900">
+                <svg class="h-3 w-3 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <title>Menu</title>
+                    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+                </svg>
+            </button>
+            
+            <div id="nav-menu" class="hidden md:flex md:items-center w-full md:w-auto">
+                <div class="md:flex-grow text-center md:text-left">
+                    <a href="index.html" class="block mt-4 md:inline-block md:mt-0 mr-6 nav-link text-gray-700 hover:text-gray-900">
+                        Home
+                    </a>
+                    <a href="inferno.html" class="block mt-4 md:inline-block md:mt-0 mr-6 nav-link text-gray-700 hover:text-gray-900">
+                        Inferno
+                    </a>
+                    <a href="purgatorio.html" class="block mt-4 md:inline-block md:mt-0 mr-6 nav-link text-gray-700 hover:text-gray-900">
+                        Purgatorio
+                    </a>
+                    <a href="#struttura" class="block mt-4 md:inline-block md:mt-0 mr-6 nav-link text-paradiso hover:text-blue-800 font-medium">
+                        Paradiso
+                    </a>
+                   
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="text-white py-16 md:py-24" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/sfondo paradiso.jpg'); background-size: cover; background-position: center;">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 text-white [filter:drop-shadow(0_1px_2px_rgba(0,0,0,0.3))]">Paradiso</h1>
+            <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto text-white [filter:drop-shadow(0_1px_2px_rgba(0,0,0,0.3))]">La terza cantica della Divina Commedia, il viaggio di Dante attraverso i nove cieli del Paradiso</p>
+            <a href="#introduzione" class="inline-block bg-white text-gray-900 hover:bg-gray-200 px-5 py-2 rounded-lg font-medium transition duration-300 text-lg">
+                Finisci il viaggio
+            </a>
+        </div>
+    </section>
+
+    <!-- Introduzione -->
+    <section id="introduzione" class="py-16 bg-uniform-light">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-2/5 mb-6 md:mb-0 md:pr-8">
+                    <img src="img/struttura paradiso.jpg" alt="Illustrazione del Paradiso dantesco" class="rounded-lg shadow-lg w-full max-w-md mx-auto">
+                </div>
+                <div class="md:w-3/5">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Il Paradiso di Dante</h2>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        Il <strong class="text-paradiso">Paradiso</strong> è la terza e ultima cantica della Divina Commedia, composta da 33 canti. Qui Dante descrive il suo viaggio attraverso i nove cieli del Paradiso, guidato da Beatrice, fino all'Empireo, dove contempla Dio.
+                    </p>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        La struttura del Paradiso è composta dai nove cieli che ruotano intorno alla Terra, secondo la cosmologia tolemaica, con un decimo cielo immobile (l'Empireo) che li contiene tutti. In questa cantica, Dante raggiunge la visione di Dio, culmine del suo viaggio spirituale.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed">
+                        In ogni cielo, Dante incontra anime beate che in vita hanno incarnato una particolare virtù. A differenza dell'Inferno e del Purgatorio, nel Paradiso le anime non sono fisicamente legate ai cieli dove appaiono: tutte risiedono nell'Empireo, ma si manifestano nei diversi cieli per rendere comprensibile a Dante la loro diversa beatitudine.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Struttura del Paradiso -->
+    <section id="struttura" class="py-16 bg-uniform-dark">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center">Struttura del Paradiso</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- I Cielo -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-paradiso">
+                    <h3 class="text-xl font-bold mb-3 text-paradiso">I Cielo - Luna</h3>
+                    <p class="text-gray-700 mb-2">Spiriti che mancarono ai voti (incostanti).</p>
+                    <p class="text-sm text-gray-500">Canti I-V</p>
+                </div>
+                
+                <!-- II Cielo -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-paradiso">
+                    <h3 class="text-xl font-bold mb-3 text-paradiso">II Cielo - Mercurio</h3>
+                    <p class="text-gray-700 mb-2">Spiriti attivi per desiderio di gloria.</p>
+                    <p class="text-sm text-gray-500">Canti V-VII</p>
+                </div>
+                
+                <!-- III Cielo -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-paradiso">
+                    <h3 class="text-xl font-bold mb-3 text-paradiso">III Cielo - Venere</h3>
+                    <p class="text-gray-700 mb-2">Spiriti amanti, che vissero secondo la virtù dell'amore.</p>
+                    <p class="text-sm text-gray-500">Canti VIII-IX</p>
+                </div>
+                
+                <!-- IV Cielo -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-paradiso">
+                    <h3 class="text-xl font-bold mb-3 text-paradiso">IV Cielo - Sole</h3>
+                    <p class="text-gray-700 mb-2">Spiriti sapienti, i grandi filosofi e teologi.</p>
+                    <p class="text-sm text-gray-500">Canti X-XIV</p>
+                </div>
+                
+                <!-- V Cielo -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-paradiso">
+                    <h3 class="text-xl font-bold mb-3 text-paradiso">V Cielo - Marte</h3>
+                    <p class="text-gray-700 mb-2">Spiriti combattenti per la fede.</p>
+                    <p class="text-sm text-gray-500">Canti XIV-XVIII</p>
+                </div>
+                
+                <!-- VI Cielo -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-paradiso">
+                    <h3 class="text-xl font-bold mb-3 text-paradiso">VI Cielo - Giove</h3>
+                    <p class="text-gray-700 mb-2">Spiriti giusti.</p>
+                    <p class="text-sm text-gray-500">Canti XVIII-XX</p>
+                </div>
+                
+                <!-- VII Cielo -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-paradiso">
+                    <h3 class="text-xl font-bold mb-3 text-paradiso">VII Cielo - Saturno</h3>
+                    <p class="text-gray-700 mb-2">Spiriti contemplativi.</p>
+                    <p class="text-sm text-gray-500">Canti XXI-XXII</p>
+                </div>
+                
+                <!-- VIII Cielo -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-paradiso">
+                    <h3 class="text-xl font-bold mb-3 text-paradiso">VIII Cielo - Stelle Fisse</h3>
+                    <p class="text-gray-700 mb-2">Trionfo di Cristo e di Maria. Esame sulle virtù teologali.</p>
+                    <p class="text-sm text-gray-500">Canti XXII-XXVII</p>
+                </div>
+                
+                <!-- IX Cielo -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-paradiso">
+                    <h3 class="text-xl font-bold mb-3 text-paradiso">IX Cielo - Primo Mobile</h3>
+                    <p class="text-gray-700 mb-2">Gerarchie angeliche.</p>
+                    <p class="text-sm text-gray-500">Canti XXVII-XXIX</p>
+                </div>
+                
+                <!-- Empireo -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-paradiso">
+                    <h3 class="text-xl font-bold mb-3 text-paradiso">Empireo</h3>
+                    <p class="text-gray-700 mb-2">Rosa Mistica e visione di Dio.</p>
+                    <p class="text-sm text-gray-500">Canti XXX-XXXIII</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lista Canti -->
+    <section class="py-16 bg-uniform-light">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center">Tutti i Canti del Paradiso</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Canto I -->
+                <div id="canto1" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto I</h3>
+                    <p class="text-gray-700 mb-4">Prologo, invocazione ad Apollo e ascesa al cielo. Beatrice spiega l'ordine dell'universo.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-142</span>
+                    </div>
+                </div>
+                
+                <!-- Canto II -->
+                <div id="canto2" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto II</h3>
+                    <p class="text-gray-700 mb-4">Primo Cielo (Luna). Beatrice spiega la natura delle macchie lunari.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-148</span>
+                    </div>
+                </div>
+                
+                <!-- Canto III -->
+                <div id="canto3" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto III</h3>
+                    <p class="text-gray-700 mb-4">Incontro con gli spiriti mancanti ai voti. Piccarda Donati e Costanza d'Altavilla.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-130</span>
+                    </div>
+                </div>
+                
+                <!-- Canto IV -->
+                <div id="canto4" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto IV</h3>
+                    <p class="text-gray-700 mb-4">Dubbi di Dante sul ritorno delle anime alle stelle e sulla violazione dei voti.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-142</span>
+                    </div>
+                </div>
+                
+                <!-- Canto V -->
+                <div id="canto5" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto V</h3>
+                    <p class="text-gray-700 mb-4">Ancora sulla natura dei voti. Salita al Secondo Cielo (Mercurio).</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-139</span>
+                    </div>
+                </div>
+                
+                <!-- Canto VI -->
+                <div id="canto6" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto VI</h3>
+                    <p class="text-gray-700 mb-4">Incontro con Giustiniano. Storia dell'Impero Romano e critica ai guelfi e ghibellini.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-142</span>
+                    </div>
+                </div>
+                
+                <!-- Canto VII -->
+                <div id="canto7" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto VII</h3>
+                    <p class="text-gray-700 mb-4">Beatrice spiega la giusta vendetta divina e la redenzione dell'uomo.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-148</span>
+                    </div>
+                </div>
+                
+                <!-- Canto VIII -->
+                <div id="canto8" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto VIII</h3>
+                    <p class="text-gray-700 mb-4">Terzo Cielo (Venere). Incontro con Carlo Martello e riflessione sulle influenze celesti.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-148</span>
+                    </div>
+                </div>
+                
+                <!-- Canto IX -->
+                <div id="canto9" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto IX</h3>
+                    <p class="text-gray-700 mb-4">Incontro con Cunizza da Romano, Folchetto di Marsiglia e Raab. Invettiva contro Firenze.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-142</span>
+                    </div>
+                </div>
+                
+                <!-- Canto X -->
+                <div id="canto10" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto X</h3>
+                    <p class="text-gray-700 mb-4">Quarto Cielo (Sole). Prima corona di spiriti sapienti: San Tommaso d'Aquino presenta i filosofi e teologi.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-148</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XI -->
+                <div id="canto11" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto XI</h3>
+                    <p class="text-gray-700 mb-4">San Tommaso narra la vita di San Francesco d'Assisi e critica la corruzione dell'ordine domenicano.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-139</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XII -->
+                <div id="canto12" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto XII</h3>
+                    <p class="text-gray-700 mb-4">Seconda corona di spiriti sapienti. San Bonaventura narra la vita di San Domenico e critica l'ordine francescano.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-145</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XIII -->
+                <div id="canto13" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto XIII</h3>
+                    <p class="text-gray-700 mb-4">San Tommaso chiarisce i dubbi di Dante sulla sapienza di Salomone e ammonisce contro i giudizi affrettati.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-142</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XIV -->
+                <div id="canto14" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto XIV</h3>
+                    <p class="text-gray-700 mb-4">Beatrice pone un quesito sulla luce dei beati dopo la resurrezione. Salita al Quinto Cielo (Marte).</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-139</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XV -->
+                <div id="canto15" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto XV</h3>
+                    <p class="text-gray-700 mb-4">Incontro con Cacciaguida, trisavolo di Dante. Ricordi della Firenze antica.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-148</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XVI -->
+                <div id="canto16" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto XVI</h3>
+                    <p class="text-gray-700 mb-4">Cacciaguida parla della nobiltà fiorentina e della decadenza della città.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-154</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XVII -->
+                <div id="canto17" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto XVII</h3>
+                    <p class="text-gray-700 mb-4">Cacciaguida profetizza l'esilio di Dante e lo esorta a raccontare la sua visione.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-142</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XVIII -->
+                <div id="canto18" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto XVIII</h3>
+                    <p class="text-gray-700 mb-4">Altri spiriti combattenti. Salita al Sesto Cielo (Giove). Gli spiriti giusti formano frasi e l'aquila imperiale.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-136</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XIX -->
+                <div id="canto19" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto XIX</h3>
+                    <p class="text-gray-700 mb-4">L'aquila parla della giustizia divina e della salvezza dei pagani virtuosi.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-148</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XX -->
+                <div id="canto20" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto XX</h3>
+                    <p class="text-gray-700 mb-4">L'aquila rivela le anime che formano il suo occhio, tra cui spiriti pagani salvati per grazia divina.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-148</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XXI -->
+                <div id="canto21" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto XXI</h3>
+                    <p class="text-gray-700 mb-4">Settimo Cielo (Saturno). La scala d'oro e incontro con San Pier Damiani, che denuncia la corruzione della Chiesa.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-142</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XXII -->
+                <div id="canto22" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto XXII</h3>
+                    <p class="text-gray-700 mb-4">Incontro con San Benedetto, che critica la decadenza dell'ordine benedettino. Salita all'Ottavo Cielo (Stelle Fisse).</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-154</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XXIII -->
+                <div id="canto23" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto XXIII</h3>
+                    <p class="text-gray-700 mb-4">Trionfo di Cristo e Maria. Dante contempla la moltitudine dei beati e la luce radiosa di Cristo.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-139</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XXIV -->
+                <div id="canto24" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto XXIV</h3>
+                    <p class="text-gray-700 mb-4">Esame sulla fede. San Pietro interroga Dante sulla natura della fede.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-154</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XXV -->
+                <div id="canto25" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto XXV</h3>
+                    <p class="text-gray-700 mb-4">Esame sulla speranza. San Giacomo interroga Dante sulla natura della speranza.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-139</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XXVI -->
+                <div id="canto26" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto XXVI</h3>
+                    <p class="text-gray-700 mb-4">Esame sulla carità. San Giovanni interroga Dante sull'amore. Incontro con Adamo.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-142</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XXVII -->
+                <div id="canto27" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto XXVII</h3>
+                    <p class="text-gray-700 mb-4">San Pietro denuncia la corruzione della Chiesa. Salita al Nono Cielo (Primo Mobile).</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-148</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XXVIII -->
+                <div id="canto28" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto XXVIII</h3>
+                    <p class="text-gray-700 mb-4">Visione del punto divino e delle gerarchie angeliche che ruotano intorno ad esso.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-139</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XXIX -->
+                <div id="canto29" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto XXIX</h3>
+                    <p class="text-gray-700 mb-4">Beatrice spiega la creazione degli angeli e critica le speculazioni teologiche prive di fondamento.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-145</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XXX -->
+                <div id="canto30" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto XXX</h3>
+                    <p class="text-gray-700 mb-4">Ascesa all'Empireo. Visione del fiume di luce e della Rosa dei Beati.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-145</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XXXI -->
+                <div id="canto31" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto XXXI</h3>
+                    <p class="text-gray-700 mb-4">La Rosa Mistica. Beatrice torna al suo posto nella rosa. San Bernardo diventa la nuova guida di Dante.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-142</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XXXII -->
+                <div id="canto32" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto XXXII</h3>
+                    <p class="text-gray-700 mb-4">San Bernardo illustra l'ordinamento della rosa e presenta a Dante le anime dei beati.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-151</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XXXIII -->
+                <div id="canto33" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-paradiso">Canto XXXIII</h3>
+                    <p class="text-gray-700 mb-4">Preghiera di San Bernardo alla Vergine. Visione di Dio e conclusione del poema.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-145</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Principali temi -->
+    <section class="py-16 bg-uniform-dark">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center">Temi Principali del Paradiso</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Luce e visione -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-4 text-paradiso">Luce e Visione</h3>
+                    <p class="text-gray-700 mb-4">
+                        La luce è l'elemento dominante del Paradiso, simbolo della grazia e della presenza divina. Dante descrive diverse intensità di luce, che aumentano man mano che si avvicina a Dio. La visione, tema ricorrente nella Divina Commedia, qui raggiunge il suo culmine con la contemplazione dell'essenza divina.
+                    </p>
+                </div>
+                
+                <!-- Teologia e filosofia -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-4 text-paradiso">Teologia e Filosofia</h3>
+                    <p class="text-gray-700 mb-4">
+                        Nel Paradiso, Dante affronta complesse questioni teologiche e filosofiche: la natura della beatitudine, la predestinazione, il libero arbitrio, l'ordine dell'universo. Gli incontri con i beati e le spiegazioni di Beatrice permettono a Dante di esplorare i misteri della fede cristiana.
+                    </p>
+                </div>
+                
+                <!-- L'amore divino -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-4 text-paradiso">L'Amore Divino</h3>
+                    <p class="text-gray-700 mb-4">
+                        L'amore è la forza che muove l'universo dantesco ("l'amor che move il sole e l'altre stelle"). Nel Paradiso, l'amore umano si trasforma in amore divino: le anime beate sono immerse nell'amore di Dio, fonte della loro beatitudine. L'amore è anche ciò che guida Dante stesso nel suo viaggio verso la visione divina.
+                    </p>
+                </div>
+                
+                <!-- Critica alla corruzione della Chiesa -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-4 text-paradiso">Critica alla Corruzione della Chiesa</h3>
+                    <p class="text-gray-700 mb-4">
+                        Anche nel Paradiso, Dante non rinuncia alla sua critica contro la corruzione della Chiesa del suo tempo. Attraverso le parole di San Pietro, San Benedetto e altri beati, condanna l'avidità e il potere temporale del papato, invocando un ritorno alla purezza evangelica.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Citazioni celebri -->
+    <section class="py-16 bg-uniform-light">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center">Citazioni Celebri</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-uniform-dark rounded-lg shadow-md p-6 border-l-4 border-paradiso">
+                    <p class="text-gray-700 mb-3 italic">"La gloria di colui che tutto move per l'universo penetra, e risplende in una parte più e meno altrove."</p>
+                    <p class="text-right text-paradiso font-medium">Canto I, vv. 1-3</p>
+                </div>
+                
+                <div class="bg-uniform-dark rounded-lg shadow-md p-6 border-l-4 border-paradiso">
+                    <p class="text-gray-700 mb-3 italic">"Nel ciel che più de la sua luce prende fu' io, e vidi cose che ridire né sa né può chi di là sù discende."</p>
+                    <p class="text-right text-paradiso font-medium">Canto I, vv. 4-6</p>
+                </div>
+                
+                <div class="bg-uniform-dark rounded-lg shadow-md p-6 border-l-4 border-paradiso">
+                    <p class="text-gray-700 mb-3 italic">"Luce intellettual, piena d'amore; amor di vero ben, pien di letizia; letizia che trascende ogni dolzore."</p>
+                    <p class="text-right text-paradiso font-medium">Canto XXX, vv. 40-42</p>
+                </div>
+                
+                <div class="bg-uniform-dark rounded-lg shadow-md p-6 border-l-4 border-paradiso">
+                    <p class="text-gray-700 mb-3 italic">"L'amor che move il sole e l'altre stelle."</p>
+                    <p class="text-right text-paradiso font-medium">Canto XXXIII, v. 145</p>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+<button onclick="downloadPDF()" 
+    style="background-color: #f5bd1f;"
+    class="text-white font-medium py-3 px-6 rounded-lg inline-flex items-center hover:brightness-90 transition duration-300">
+    <i class="fas fa-file-pdf mr-2"></i> Scarica Paradiso PDF
+</button>
+
+
+</div>
+        </div>
+    </section>
+
+    <!--Footer-->
+<footer class="bg-gray-900 text-white py-10">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <h2 class="text-2xl font-bold mb-4 md:mb-0">La Divina Commedia</h2>
+            
+        </div>
+        <hr class="my-6 border-gray-700">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Navigazione</h3>
+                <ul class="space-y-2">
+                    <li><a href="index.html" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                    <li><a href="#introduzione" class="text-gray-400 hover:text-white transition duration-300">Introduzione</a></li>
+                    <li><a href="#struttura" class="text-gray-400 hover:text-white transition duration-300">Struttura</a></li>
+                    <li><a href="inferno.html" class="text-gray-400 hover:text-white transition duration-300">Inferno</a></li>
+                    <li><a href="purgatorio.html" class="text-gray-400 hover:text-white transition duration-300">Purgatorio</a></li>
+                    <li><a href="biografia.html" class="text-gray-400 hover:text-white transition duration-300">Biografia</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Contenuti correlati</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="biografia.html" 
+                               rel="noopener noreferrer"
+                               class="text-gray-400 hover:text-white transition duration-300">
+                                Dante Alighieri
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://it.wikipedia.org/wiki/Letteratura_medievale" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="text-gray-400 hover:text-white transition duration-300">
+                                Letteratura medievale
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://it.wikipedia.org/wiki/Storia_di_Firenze" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="text-gray-400 hover:text-white transition duration-300">
+                                Storia di Firenze
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Risorse</h3>
+                <ul class="space-y-2">
+                    <li><a href="quiz.html" class="text-gray-400 hover:text-white transition duration-300">Quiz</a></li>
+                    <li><a href="https://it.wikipedia.org/wiki/Divina_Commedia" target="_blank"  class="text-gray-400 hover:text-white transition duration-300">Approfondimenti</a></li>
+                    <li><button onclick="downloadTutto()" class="text-gray-400 hover:text-white transition duration-300 text-left w-full">Download PDF</button></li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-8 text-center text-gray-400 text-sm">
+            <p>© 2025 La Divina Commedia. Tutti i diritti riservati.</p>
+            <p class="mt-2">Sviluppato per scopi educativi.</p>
+        </div>
+    </div>
+</footer>
+
+
+<!-- Scroll Top Button -->
+<button id="scrollTopBtn" class="scroll-top bg-inferno hover:bg-red-800 text-white p-3 rounded-full shadow-lg transition-all">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+
+    <!-- JavaScript -->
+    <script>
+        function downloadPDF() {
+        // URL del PDF da scaricare (sostituire con il percorso effettivo del file)
+        const pdfUrl = 'assets/paradiso.pdf';
+        
+        window.open(pdfUrl,'_blank');
+    }
+
+    function downloadTutto() {
+    const pdfUrl = 'assets/la divina commedia.pdf';
+
+    // Apre il PDF in una nuova scheda
+    window.open(pdfUrl, '_blank');
+    }
+
+
+
+    
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const navMenu = document.getElementById('nav-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            navMenu.classList.toggle('hidden');
+        });
+        
+        // Scroll to Top Button
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        
+        window.addEventListener('scroll', () => {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                scrollTopBtn.style.display = 'block';
+                scrollTopBtn.style.opacity = '1';
+            } else {
+                scrollTopBtn.style.opacity = '0';
+                setTimeout(() => {
+                    if (document.body.scrollTop <= 200 && document.documentElement.scrollTop <= 200) {
+                        scrollTopBtn.style.display = 'none';
+                    }
+                }, 300);
+            }
+        });
+        
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

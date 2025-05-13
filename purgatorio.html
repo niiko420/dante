@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purgatorio | La Divina Commedia</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+
+        :root {
+            --purgatorio: #3b82f6;
+            --main-bg: #f3f4f6;
+            --secondary-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--main-bg);
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/purgatorio-bg.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .text-purgatorio { color: var(--purgatorio); }
+        .border-purgatorio { border-color: var(--purgatorio); }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: currentColor;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .scroll-top {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            transition: opacity 0.3s;
+        }
+
+        .card-transition {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-transition:hover {
+            transform: translateY(-5px);
+        }
+
+        .bg-uniform-light {
+            background-color: var(--secondary-bg);
+        }
+
+        .bg-uniform-dark {
+            background-color: var(--main-bg);
+        }
+
+        .canto-nav {
+            scroll-margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header / Navbar -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-3 flex flex-wrap items-center justify-between">
+            <div class="flex items-center">
+                <a href="index.html" class="font-semibold text-xl md:text-2xl font-serif tracking-tight">
+                    Divina Commedia
+                </a>
+            </div>
+            
+            <button id="mobile-menu-button" class="md:hidden flex items-center px-3 py-2 border rounded text-gray-700 border-gray-700 hover:text-gray-900 hover:border-gray-900">
+                <svg class="h-3 w-3 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <title>Menu</title>
+                    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+                </svg>
+            </button>
+            
+            <div id="nav-menu" class="hidden md:flex md:items-center w-full md:w-auto">
+                <div class="md:flex-grow text-center md:text-left">
+                    <a href="index.html" class="block mt-4 md:inline-block md:mt-0 mr-6 nav-link text-gray-700 hover:text-gray-900">
+                        Home
+                    </a>
+                    <a href="inferno.html" class="block mt-4 md:inline-block md:mt-0 mr-6 nav-link text-gray-700 hover:text-gray-900">
+                        Inferno
+                    </a>
+                    <a href="#struttura" class="block mt-4 md:inline-block md:mt-0 mr-6 nav-link text-purgatorio hover:text-blue-800 font-medium">
+                        Purgatorio
+                    </a>
+                    <a href="paradiso.html" class="block mt-4 md:inline-block md:mt-0 mr-6 nav-link text-gray-700 hover:text-gray-900">
+                        Paradiso
+                    </a>
+                    
+                    
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+<!-- Hero Section con ombra più leggera -->
+<section class="text-white py-16 md:py-24" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/sfondo purgatorio.jpg'); background-size: cover; background-position: center;">
+    <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 text-white [filter:drop-shadow(0_1px_2px_rgba(0,0,0,0.3))]">Purgatorio</h1>
+        <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto text-white [filter:drop-shadow(0_1px_2px_rgba(0,0,0,0.3))]">La seconda cantica della Divina Commedia, il viaggio di Dante attraverso la montagna della purificazione</p>
+        <a href="#introduzione" class="inline-block bg-white text-gray-900 hover:bg-gray-200 px-5 py-2 rounded-lg font-medium transition duration-300 text-lg">
+            Continua il viaggio
+        </a>
+    </div>
+</section>
+
+    <!-- Introduzione -->
+    <section id="introduzione" class="py-16 bg-uniform-light">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-2/5 mb-6 md:mb-0 md:pr-8">
+                    <img src="img\purga5torio.jpg" alt="Illustrazione del Purgatorio dantesco" class="rounded-lg shadow-lg w-full max-w-md mx-auto">
+                </div>
+                <div class="md:w-3/5">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Il Purgatorio di Dante</h2>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        Il <strong class="text-purgatorio">Purgatorio</strong> è la seconda delle tre cantiche della Divina Commedia, composta da 33 canti. Dante, ancora accompagnato da Virgilio, si trova ora a scalare una montagna, simbolo di purificazione e redenzione.
+                    </p>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        A differenza dell'Inferno, il Purgatorio è un regno temporaneo, dove le anime espiano i propri peccati con la certezza di raggiungere, una volta purificate, il Paradiso. La montagna del Purgatorio si erge nell'emisfero australe, ed è divisa in Antipurgatorio, sette cornici e il Paradiso Terrestre sulla cima.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed">
+                        In questo regno Dante affronta il tema della libertà dal peccato attraverso l'espiazione. Al termine del viaggio, dopo essersi purificato, Dante incontrerà Beatrice, che lo guiderà nel Paradiso, sostituendo Virgilio come sua guida.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Struttura del Purgatorio -->
+    <section id="struttura" class="py-16 bg-uniform-dark">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center">Struttura del Purgatorio</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Antipurgatorio -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-purgatorio">
+                    <h3 class="text-xl font-bold mb-3 text-purgatorio">Antipurgatorio</h3>
+                    <p class="text-gray-700 mb-2">Zona inferiore dove attendono coloro che si pentirono tardi o morirono scomunicati.</p>
+                    <p class="text-sm text-gray-500">Canti I-VIII</p>
+                </div>
+                
+                <!-- Prima cornice -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-purgatorio">
+                    <h3 class="text-xl font-bold mb-3 text-purgatorio">Prima Cornice</h3>
+                    <p class="text-gray-700 mb-2">I superbi, costretti a portare pesanti massi sulle spalle.</p>
+                    <p class="text-sm text-gray-500">Canti X-XII</p>
+                </div>
+                
+                <!-- Seconda cornice -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-purgatorio">
+                    <h3 class="text-xl font-bold mb-3 text-purgatorio">Seconda Cornice</h3>
+                    <p class="text-gray-700 mb-2">Gli invidiosi, con occhi cuciti da filo di ferro.</p>
+                    <p class="text-sm text-gray-500">Canti XIII-XV</p>
+                </div>
+                
+                <!-- Terza cornice -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-purgatorio">
+                    <h3 class="text-xl font-bold mb-3 text-purgatorio">Terza Cornice</h3>
+                    <p class="text-gray-700 mb-2">Gli iracondi, avvolti in un denso fumo.</p>
+                    <p class="text-sm text-gray-500">Canti XV-XVII</p>
+                </div>
+                
+                <!-- Quarta cornice -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-purgatorio">
+                    <h3 class="text-xl font-bold mb-3 text-purgatorio">Quarta Cornice</h3>
+                    <p class="text-gray-700 mb-2">Gli accidiosi, costretti a correre senza sosta.</p>
+                    <p class="text-sm text-gray-500">Canti XVII-XIX</p>
+                </div>
+                
+                <!-- Quinta cornice -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-purgatorio">
+                    <h3 class="text-xl font-bold mb-3 text-purgatorio">Quinta Cornice</h3>
+                    <p class="text-gray-700 mb-2">Gli avari e i prodighi, sdraiati a terra con il viso in giù.</p>
+                    <p class="text-sm text-gray-500">Canti XIX-XXII</p>
+                </div>
+                
+                <!-- Sesta cornice -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-purgatorio">
+                    <h3 class="text-xl font-bold mb-3 text-purgatorio">Sesta Cornice</h3>
+                    <p class="text-gray-700 mb-2">I golosi, scheletrici e tormentati dalla fame e dalla sete.</p>
+                    <p class="text-sm text-gray-500">Canti XXII-XXIV</p>
+                </div>
+                
+                <!-- Settima cornice -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-purgatorio">
+                    <h3 class="text-xl font-bold mb-3 text-purgatorio">Settima Cornice</h3>
+                    <p class="text-gray-700 mb-2">I lussuriosi, che camminano tra le fiamme.</p>
+                    <p class="text-sm text-gray-500">Canti XXV-XXVII</p>
+                </div>
+                
+                <!-- Paradiso Terrestre -->
+                <div class="bg-uniform-light rounded-lg shadow-md p-6 border-l-4 border-purgatorio">
+                    <h3 class="text-xl font-bold mb-3 text-purgatorio">Paradiso Terrestre</h3>
+                    <p class="text-gray-700 mb-2">L'Eden, sulla cima della montagna. Incontro con Matelda e Beatrice.</p>
+                    <p class="text-sm text-gray-500">Canti XXVIII-XXXIII</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lista Canti -->
+    <section class="py-16 bg-uniform-light">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center">Tutti i Canti del Purgatorio</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Canto I -->
+                <div id="canto1" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto I</h3>
+                    <p class="text-gray-700 mb-4">Dante e Virgilio approdano sull'isola del Purgatorio. Incontrano Catone, il custode del Purgatorio.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-136</span>
+                    </div>
+                </div>
+                
+                <!-- Canto II -->
+                <div id="canto2" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto II</h3>
+                    <p class="text-gray-700 mb-4">L'angelo nocchiero trasporta le anime destinate al Purgatorio. Incontro con il musico Casella.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-133</span>
+                    </div>
+                </div>
+                
+                <!-- Canto III -->
+                <div id="canto3" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto III</h3>
+                    <p class="text-gray-700 mb-4">Inizia la salita verso l'Antipurgatorio. Incontro con Manfredi di Svevia.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-145</span>
+                    </div>
+                </div>
+                
+                <!-- Canto IV -->
+                <div id="canto4" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto IV</h3>
+                    <p class="text-gray-700 mb-4">La salita diventa ripida. Incontro con Belacqua, esempio di negligenza.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-139</span>
+                    </div>
+                </div>
+                
+                <!-- Canto V -->
+                <div id="canto5" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto V</h3>
+                    <p class="text-gray-700 mb-4">I morti per violenza pentiti all'ultimo istante. Incontro con Iacopo del Cassero, Buonconte da Montefeltro e Pia de' Tolomei.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-136</span>
+                    </div>
+                </div>
+                
+                <!-- Canto VI -->
+                <div id="canto6" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto VI</h3>
+                    <p class="text-gray-700 mb-4">Le anime si affollano intorno a Dante. La celebre invettiva contro l'Italia.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-151</span>
+                    </div>
+                </div>
+                
+                <!-- Canto VII -->
+                <div id="canto7" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto VII</h3>
+                    <p class="text-gray-700 mb-4">La valletta dei principi negligenti. Incontro con Sordello da Goito.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-136</span>
+                    </div>
+                </div>
+                
+                <!-- Canto VIII -->
+                <div id="canto8" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto VIII</h3>
+                    <p class="text-gray-700 mb-4">La sera nella valletta. Il serpente tentatore e i due angeli. Incontro con Nino Visconti e Corrado Malaspina.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-139</span>
+                    </div>
+                </div>
+                
+                <!-- Canto IX -->
+                <div id="canto9" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto IX</h3>
+                    <p class="text-gray-700 mb-4">Il sogno dell'aquila. Arrivo alla porta del Purgatorio con l'angelo portinaio.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-145</span>
+                    </div>
+                </div>
+                
+                <!-- Canto X -->
+                <div id="canto10" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto X</h3>
+                    <p class="text-gray-700 mb-4">Prima cornice: i superbi. Bassorilievi di esempi di umiltà.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-139</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XI -->
+                <div id="canto11" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto XI</h3>
+                    <p class="text-gray-700 mb-4">I superbi recitano il Padre Nostro. Incontro con Omberto Aldobrandesco e Oderisi da Gubbio.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-142</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XII -->
+                <div id="canto12" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto XII</h3>
+                    <p class="text-gray-700 mb-4">Esempi di superbia punita. L'angelo dell'umiltà cancella la prima P dalla fronte di Dante.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-136</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XIII -->
+                <div id="canto13" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto XIII</h3>
+                    <p class="text-gray-700 mb-4">Seconda cornice: gli invidiosi. Esempi di carità e incontro con Sapìa senese.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-154</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XIV -->
+                <div id="canto14" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto XIV</h3>
+                    <p class="text-gray-700 mb-4">Ancora gli invidiosi. Guido del Duca e Rinieri da Calboli deplorano la corruzione della Romagna.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-151</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XV -->
+                <div id="canto15" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto XV</h3>
+                    <p class="text-gray-700 mb-4">Passaggio alla terza cornice. L'angelo della misericordia. Esempi di mansuetudine.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-145</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XVI -->
+                <div id="canto16" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto XVI</h3>
+                    <p class="text-gray-700 mb-4">Terza cornice: gli iracondi nel fumo. Marco Lombardo discute del libero arbitrio.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-145</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XVII -->
+                <div id="canto17" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto XVII</h3>
+                    <p class="text-gray-700 mb-4">Esempi di ira punita. Virgilio spiega la struttura morale del Purgatorio.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-139</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XVIII -->
+                <div id="canto18" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto XVIII</h3>
+                    <p class="text-gray-700 mb-4">La teoria dell'amore e del libero arbitrio. Quarta cornice: gli accidiosi che corrono senza sosta.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-145</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XIX -->
+                <div id="canto19" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+                    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto XIX</h3>
+                    <p class="text-gray-700 mb-4">Il sogno della sirena. Quinta cornice: gli avari e i prodighi, sdraiati con il volto a terra.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">vv. 1-145</span>
+                    </div>
+                </div>
+                
+                <!-- Canto XX -->
+<div id="canto20" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto XX</h3>
+    <p class="text-gray-700 mb-4">Esempi di povertà e liberalità. Ugo Capeto denuncia la corruzione dei re francesi. Il terremoto che segnala la liberazione di un'anima.</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-151</span>
+    </div>
+</div>
+
+<!-- Canto XXI -->
+<div id="canto21" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto XXI</h3>
+    <p class="text-gray-700 mb-4">Incontro con il poeta Stazio, appena liberato dal Purgatorio dopo cinquecento anni nella quinta cornice.</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-136</span>
+    </div>
+</div>
+
+<!-- Canto XXII -->
+<div id="canto22" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto XXII</h3>
+    <p class="text-gray-700 mb-4">Stazio spiega la sua conversione grazie a Virgilio. Passaggio alla sesta cornice: i golosi.</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-154</span>
+    </div>
+</div>
+
+<!-- Canto XXIII -->
+<div id="canto23" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto XXIII</h3>
+    <p class="text-gray-700 mb-4">I golosi, emaciati dalla fame e dalla sete. Incontro con Forese Donati, amico di Dante.</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-133</span>
+    </div>
+</div>
+
+<div id="canto24" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto XXIV</h3>
+    <p class="text-gray-700 mb-4">Continuano gli incontri con i golosi. Incontro con Bonagiunta Orbicciani e la definizione del "dolce stil novo".</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-154</span>
+    </div>
+</div>
+
+<div id="canto25" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto XXV</h3>
+    <p class="text-gray-700 mb-4">Stazio spiega come si generano i corpi umani. Passaggio alla settima cornice: i lussuriosi.</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-139</span>
+    </div>
+</div>
+
+<div id="canto26" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto XXVI</h3>
+    <p class="text-gray-700 mb-4">I lussuriosi nel fuoco. Incontro con Guido Guinizelli e Arnaut Daniel.</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-148</span>
+    </div>
+</div>
+
+<div id="canto27" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto XXVII</h3>
+    <p class="text-gray-700 mb-4">Dante attraversa il fuoco. Virgilio annuncia la fine del suo ruolo di guida.</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-142</span>
+    </div>
+</div>
+
+<div id="canto28" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto XXVIII</h3>
+    <p class="text-gray-700 mb-4">Il Paradiso Terrestre. Incontro con Matelda.</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-148</span>
+    </div>
+</div>
+
+<div id="canto29" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto XXIX</h3>
+    <p class="text-gray-700 mb-4">La processione mistica nel Paradiso Terrestre.</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-154</span>
+    </div>
+</div>
+
+<div id="canto30" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto XXX</h3>
+    <p class="text-gray-700 mb-4">Apparizione di Beatrice. Virgilio scompare.</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-145</span>
+    </div>
+</div>
+
+<div id="canto31" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto XXXI</h3>
+    <p class="text-gray-700 mb-4">Rimproveri di Beatrice a Dante. Confessione di Dante.</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-145</span>
+    </div>
+</div>
+
+<div id="canto32" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto XXXII</h3>
+    <p class="text-gray-700 mb-4">La trasformazione del carro e l'allegoria della Chiesa.</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-160</span>
+    </div>
+</div>
+
+<div id="canto33" class="canto-nav bg-uniform-dark rounded-lg shadow-md p-6 card-transition">
+    <h3 class="text-xl font-bold mb-2 text-purgatorio">Canto XXXIII</h3>
+    <p class="text-gray-700 mb-4">Ultime profezie di Beatrice. Dante beve le acque dell'Eunoè.</p>
+    <div class="flex justify-between items-center">
+        <span class="text-sm text-gray-500">vv. 1-157</span>
+    </div>
+</div>
+</div>
+<div class="text-center mt-12">
+    <button onclick="downloadPurgatorio()" 
+    class="bg-blue-600 text-white font-medium py-3 px-6 rounded-lg inline-flex items-center hover:bg-blue-700 transition duration-300">
+        <i class="fas fa-file-pdf mr-2"></i> Scarica Purgatorio PDF
+    </button>
+</div>
+
+
+</div>
+</section>
+
+<!-- Temi principali del Purgatorio -->
+<section class="py-16 bg-uniform-light">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center">La purificazione dell'anima nel Purgatorio</h2>
+        
+        <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-6 md:mb-0 md:pr-8">
+                <img src="img/redenzione.jpg" alt="Rappresentazione della purificazione dell'anima" class="rounded-lg shadow-lg w-full">
+            </div>
+            <div class="md:w-1/2">
+                <h3 class="text-2xl font-bold mb-4 text-purgatorio">Il percorso di redenzione</h3>
+                <p class="text-gray-700 mb-4 leading-relaxed">
+                    Al contrario dell'Inferno, dove le anime sono condannate eternamente, il Purgatorio rappresenta un regno di <strong>speranza e trasformazione</strong>. Qui, attraverso la sofferenza volontaria e il pentimento, le anime si purificano per essere degne del Paradiso.
+                </p>
+                <p class="text-gray-700 mb-4 leading-relaxed">
+                    La struttura stessa della montagna, con le sue sette cornici, rappresenta il percorso di liberazione dai sette vizi capitali (superbia, invidia, ira, accidia, avarizia, gola e lussuria), disposti in ordine decrescente di gravità durante la salita.
+                </p>
+                <p class="text-gray-700 mb-4 leading-relaxed">
+                    In ogni cornice, le anime espiano attraverso <strong>contrappasso</strong>: la pena è in relazione diretta con il peccato commesso. Ad esempio, i superbi portano pesi sulla schiena per piegarli, gli invidiosi hanno gli occhi cuciti con fil di ferro.
+                </p>
+                <p class="text-gray-700 leading-relaxed">
+                    Il percorso di Dante stesso nel Purgatorio è simbolo del cammino dell'uomo verso la salvezza: per ogni cornice superata, un angelo cancella una P (peccato) dalla fronte del poeta, fino alla purificazione completa nell'Eden, dove incontra Beatrice, simbolo della grazia divina.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Personaggi del Purgatorio -->
+<section class="py-16 bg-uniform-dark">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center">Personaggi Principali del Purgatorio</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Catone -->
+            <div class="bg-uniform-light rounded-lg shadow-md overflow-hidden card-transition">
+                <div class="p-6 border-b border-gray-200">
+                    <h3 class="text-xl font-bold mb-2 text-purgatorio">Catone Uticense</h3>
+                    <p class="text-gray-600 text-sm mb-2">Custode del Purgatorio</p>
+                    <p class="text-gray-700">Guardiano dell'Antipurgatorio, simbolo della libertà morale. Nonostante fosse pagano, per la sua integrità morale e il suo sacrificio per la libertà, Dante lo pone come custode della montagna della purificazione.</p>
+                </div>
+                <div class="px-6 py-4 bg-gray-50">
+                    <span class="text-sm text-gray-500">Canto I</span>
+                </div>
+            </div>
+            
+            <!-- Casella -->
+            <div class="bg-uniform-light rounded-lg shadow-md overflow-hidden card-transition">
+                <div class="p-6 border-b border-gray-200">
+                    <h3 class="text-xl font-bold mb-2 text-purgatorio">Casella</h3>
+                    <p class="text-gray-600 text-sm mb-2">Musico fiorentino</p>
+                    <p class="text-gray-700">Amico musicista di Dante, che intona una canzone del poeta ("Amor che ne la mente mi ragiona"). Rappresenta la dolcezza dell'arte che, se fine a se stessa, può distrarre dal cammino di purificazione.</p>
+                </div>
+                <div class="px-6 py-4 bg-gray-50">
+                    <span class="text-sm text-gray-500">Canto II</span>
+                </div>
+            </div>
+            
+            <!-- Manfredi -->
+            <div class="bg-uniform-light rounded-lg shadow-md overflow-hidden card-transition">
+                <div class="p-6 border-b border-gray-200">
+                    <h3 class="text-xl font-bold mb-2 text-purgatorio">Manfredi di Svevia</h3>
+                    <p class="text-gray-600 text-sm mb-2">Re di Sicilia</p>
+                    <p class="text-gray-700">Figlio illegittimo di Federico II, scomunicato dalla Chiesa ma salvatosi grazie al pentimento in punto di morte. Esempio di come la misericordia divina sia più grande della condanna ecclesiastica.</p>
+                </div>
+                <div class="px-6 py-4 bg-gray-50">
+                    <span class="text-sm text-gray-500">Canto III</span>
+                </div>
+            </div>
+            
+            <!-- Sordello -->
+            <div class="bg-uniform-light rounded-lg shadow-md overflow-hidden card-transition">
+                <div class="p-6 border-b border-gray-200">
+                    <h3 class="text-xl font-bold mb-2 text-purgatorio">Sordello da Goito</h3>
+                    <p class="text-gray-600 text-sm mb-2">Poeta e trovatore</p>
+                    <p class="text-gray-700">Poeta mantovano che accoglie con grande affetto Virgilio, suo concittadino. Figura importante che fa da guida nella valletta dei principi negligenti e occasione per Dante di lanciare la sua invettiva contro l'Italia.</p>
+                </div>
+                <div class="px-6 py-4 bg-gray-50">
+                    <span class="text-sm text-gray-500">Canti VI-VIII</span>
+                </div>
+            </div>
+            
+            <!-- Pia de' Tolomei -->
+            <div class="bg-uniform-light rounded-lg shadow-md overflow-hidden card-transition">
+                <div class="p-6 border-b border-gray-200">
+                    <h3 class="text-xl font-bold mb-2 text-purgatorio">Pia de' Tolomei</h3>
+                    <p class="text-gray-600 text-sm mb-2">Nobildonna senese</p>
+                    <p class="text-gray-700">Donna senese uccisa dal marito, chiede a Dante di essere ricordata nel mondo dei vivi. Con poche e delicate parole racconta la sua tragica sorte, divenendo una delle figure femminili più toccanti del poema.</p>
+                </div>
+                <div class="px-6 py-4 bg-gray-50">
+                    <span class="text-sm text-gray-500">Canto V</span>
+                </div>
+            </div>
+            
+            <!-- Marco Lombardo -->
+            <div class="bg-uniform-light rounded-lg shadow-md overflow-hidden card-transition">
+                <div class="p-6 border-b border-gray-200">
+                    <h3 class="text-xl font-bold mb-2 text-purgatorio">Marco Lombardo</h3>
+                    <p class="text-gray-600 text-sm mb-2">Uomo di corte</p>
+                    <p class="text-gray-700">Personaggio che discute con Dante sul libero arbitrio, chiarendo che non gli astri ma la corruzione morale e la mancanza di buone guide sono le cause delle miserie umane. Fondamentale la sua riflessione sulla relazione tra Chiesa e Impero.</p>
+                </div>
+                <div class="px-6 py-4 bg-gray-50">
+                    <span class="text-sm text-gray-500">Canto XVI</span>
+                </div>
+            </div>
+            
+
+
+    </div>
+</section>
+
+
+
+    <!--Footer-->
+<footer class="bg-gray-900 text-white py-10">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <h2 class="text-2xl font-bold mb-4 md:mb-0">La Divina Commedia</h2>
+            
+        </div>
+        <hr class="my-6 border-gray-700">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Navigazione</h3>
+                <ul class="space-y-2">
+                    <li><a href="index.html" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                    <li><a href="#introduzione" class="text-gray-400 hover:text-white transition duration-300">Introduzione</a></li>
+                    <li><a href="#struttura" class="text-gray-400 hover:text-white transition duration-300">Struttura</a></li>
+                    <li><a href="inferno.html" class="text-gray-400 hover:text-white transition duration-300">Inferno</a></li>
+                    <li><a href="paradiso.html" class="text-gray-400 hover:text-white transition duration-300">Paradiso</a></li>
+                    <li><a href="biografia.html" class="text-gray-400 hover:text-white transition duration-300">Biografia</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Contenuti correlati</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="biografia.html" 
+                               rel="noopener noreferrer"
+                               class="text-gray-400 hover:text-white transition duration-300">
+                                Dante Alighieri
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://it.wikipedia.org/wiki/Letteratura_medievale" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="text-gray-400 hover:text-white transition duration-300">
+                                Letteratura medievale
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://it.wikipedia.org/wiki/Storia_di_Firenze" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="text-gray-400 hover:text-white transition duration-300">
+                                Storia di Firenze
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Risorse</h3>
+                <ul class="space-y-2">
+                    <li><a href="quiz.html" class="text-gray-400 hover:text-white transition duration-300">Quiz</a></li>
+                    <li><a href="https://it.wikipedia.org/wiki/Divina_Commedia" class="text-gray-400 hover:text-white transition duration-300">Approfondimenti</a></li>
+                    <li><button onclick="downloadTutto()" class="text-gray-400 hover:text-white transition duration-300 text-left w-full">Download PDF</button></li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-8 text-center text-gray-400 text-sm">
+            <p>© 2025 La Divina Commedia. Tutti i diritti riservati.</p>
+            <p class="mt-2">Sviluppato per scopi educativi.</p>
+        </div>
+    </div>
+</footer>
+
+
+<!-- Scroll Top Button -->
+<button id="scrollTopBtn" class="scroll-top bg-inferno hover:bg-red-800 text-white p-3 rounded-full shadow-lg transition-all">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- JavaScript -->
+<script>
+
+function downloadPurgatorio() {
+    // URL del PDF da scaricare (sostituire con il percorso effettivo del file)
+    const pdfUrl = 'assets/purgatorio.pdf';
+    
+        window.open(pdfUrl,'_blank');
+}
+
+
+function downloadTutto() {
+    const pdfUrl = 'assets/la divina commedia.pdf';
+
+    // Apre il PDF in una nuova scheda
+    window.open(pdfUrl, '_blank');
+
+}
+
+
+    // Mobile Menu Toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const navMenu = document.getElementById('nav-menu');
+    
+    mobileMenuButton.addEventListener('click', () => {
+        navMenu.classList.toggle('hidden');
+    });
+    
+    // Scroll to Top Button
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    
+    window.addEventListener('scroll', () => {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            scrollTopBtn.style.display = 'block';
+            scrollTopBtn.style.opacity = '1';
+        } else {
+            scrollTopBtn.style.opacity = '0';
+            setTimeout(() => {
+                if (document.body.scrollTop <= 200 && document.documentElement.scrollTop <= 200) {
+                    scrollTopBtn.style.display = 'none';
+                }
+            }, 300);
+        }
+    });
+    
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+</body>
+</html>

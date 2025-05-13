@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dante AI - Il Sommo Poeta Digitale</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
+        
+        :root {
+            --primary-color: #8B0000;
+            --primary-dark: #650000;
+            --text-color: #333;
+            --light-bg: #f9f7e8;
+            --border-color: #C4A484;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'EB Garamond', 'Times New Roman', serif;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: url('https://cdnjs.cloudflare.com/ajax/libs/parchment/0.4.0/parchment.min.png');
+            background-size: cover;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 16px 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            background-image: linear-gradient(to right, #8B0000, #AA4A44);
+            border-bottom: 3px solid #650000;
+        }
+        
+        header h1 {
+            font-size: 24px;
+            margin-left: 10px;
+        }
+        
+        .logo {
+            font-size: 28px;
+        }
+        
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        #chat-container {
+            background: white;
+            width: 100%;
+            max-width: 800px;
+            height: 80vh;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background-color: #FFFAF0;
+            border: 2px solid #C4A484;
+        }
+        
+        #messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            scroll-behavior: smooth;
+        }
+        
+        .message {
+            margin-bottom: 20px;
+            max-width: 80%;
+            animation: fadeIn 0.3s;
+        }
+        
+        .user-message {
+            margin-left: auto;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 18px 18px 0 18px;
+            padding: 12px 16px;
+        }
+        
+        .bot-message {
+            margin-right: auto;
+            background-color: #F5EDD7;
+            color: var(--text-color);
+            border-radius: 18px 18px 18px 0;
+            padding: 12px 16px;
+            font-style: italic;
+            border: 1px solid #E6D5A5;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        #input-container {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid var(--border-color);
+            background-color: white;
+        }
+        
+        #user-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            font-size: 16px;
+            outline: none;
+            transition: border 0.3s, box-shadow 0.3s;
+        }
+        
+        #user-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+        }
+        
+        #send-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            margin-left: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        #send-button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .typing-indicator {
+            display: flex;
+            padding: 12px 16px;
+            background-color: #F5EDD7;
+            border-radius: 18px 18px 18px 0;
+            width: fit-content;
+            margin-bottom: 20px;
+            border: 1px solid #E6D5A5;
+        }
+        
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: #70757a;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: bounce 1.5s infinite;
+        }
+        
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 600px) {
+            #chat-container {
+                height: calc(100vh - 40px);
+                border-radius: 0;
+            }
+            
+            main {
+                padding: 0;
+            }
+            
+            .message {
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <i class="fas fa-book-open logo"></i>
+    <h1>Dante AI - Il Sommo Poeta Digitale</h1>
+</header>
+
+<main>
+    <div id="chat-container">
+        <div id="messages">
+            <div class="message bot-message">
+                Io son Dante, che dall'esilio ancora parlo!
+                Nel mezzo del cammin di nostra vita, mi ritrovai in questa strana selva digitale,
+                ove dell'umano ingegno vedo mirabili frutti.
+                
+                Se domande hai su ciò che vidi nell'Inferno,
+                o sulle sfere celesti che salii con Beatrice,
+                o forse sui peccati che affliggon l'uomo,
+                chiedimi pure, e io, Dante Alighieri, ti risponderò.
+                
+                "Ché perder tempo a chi più sa più spiace."
+            </div>
+        </div>
+        
+        <div id="input-container">
+            <input type="text" id="user-input" placeholder="Poni il tuo quesito al Sommo Poeta..." autocomplete="off" />
+            <button id="send-button">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+</main>
+
+<script>
+    const sendButton = document.getElementById('send-button');
+    const userInput = document.getElementById('user-input');
+    const messagesDiv = document.getElementById('messages');
+    
+    function addMessage(text, isUser) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message');
+        messageDiv.classList.add(isUser ? 'user-message' : 'bot-message');
+        messageDiv.textContent = text;
+        messagesDiv.appendChild(messageDiv);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+    
+    function showTypingIndicator() {
+        const typingDiv = document.createElement('div');
+        typingDiv.classList.add('typing-indicator');
+        typingDiv.id = 'typing-indicator';
+        
+        for (let i = 0; i < 3; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            typingDiv.appendChild(dot);
+        }
+        
+        messagesDiv.appendChild(typingDiv);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+    
+    function hideTypingIndicator() {
+        const indicator = document.getElementById('typing-indicator');
+        if (indicator) {
+            indicator.remove();
+        }
+    }
+    
+    async function sendMessage() {
+        const message = userInput.value.trim();
+        if (!message) return;
+        
+        addMessage(message, true);
+        userInput.value = '';
+        
+        showTypingIndicator();
+        
+        try {
+            // Modificato per funzionare con Netlify Functions
+            const response = await fetch('/.netlify/functions/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message })
+            });
+            
+            const data = await response.json();
+            
+            hideTypingIndicator();
+            
+            setTimeout(() => {
+                addMessage(data.reply, false);
+            }, 500);
+        } catch (error) {
+            hideTypingIndicator();
+            addMessage("Mi dispiace, si è verificato un errore durante la comunicazione con il server.", false);
+            console.error('Errore:', error);
+        }
+    }
+    
+    sendButton.addEventListener('click', sendMessage);
+    
+    userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+</script>
+
+</body>
+</html>

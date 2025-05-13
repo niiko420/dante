@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz Interattivo | Divina Commedia</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+
+    :root {
+      --inferno: #aa0000;
+      --purgatorio: #0066cc;
+      --paradiso: #f5bd1f;
+      --main-bg: #f3f4f6;
+      --secondary-bg: #ffffff;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--main-bg);
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.5s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-bg {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/api/placeholder/1000/500');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .cantica-card-inferno:hover {
+      border-color: var(--inferno);
+      box-shadow: 0 5px 15px rgba(170, 0, 0, 0.2);
+    }
+
+    .cantica-card-purgatorio:hover {
+      border-color: var(--purgatorio);
+      box-shadow: 0 5px 15px rgba(0, 102, 204, 0.2);
+    }
+
+    .cantica-card-paradiso:hover {
+      border-color: var(--paradiso);
+      box-shadow: 0 5px 15px rgba(245, 189, 31, 0.2);
+    }
+
+    .text-inferno { color: var(--inferno); }
+    .text-purgatorio { color: var(--purgatorio); }
+    .text-paradiso { color: var(--paradiso); }
+
+    .border-inferno { border-color: var(--inferno); }
+    .border-purgatorio { border-color: var(--purgatorio); }
+    .border-paradiso { border-color: var(--paradiso); }
+
+    .nav-link {
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: currentColor;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .scroll-top {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 99;
+      transition: opacity 0.3s;
+    }
+
+    .card-transition {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card-transition:hover {
+      transform: translateY(-5px);
+    }
+
+    .bg-uniform-light {
+      background-color: var(--secondary-bg);
+    }
+
+    .bg-uniform-dark {
+      background-color: var(--main-bg);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="bg-white shadow-md sticky top-0 z-50">
+    <nav class="container mx-auto px-4 py-3 flex flex-wrap items-center justify-between">
+      <div class="flex items-center">
+        <a href="index.html" class="font-semibold text-xl md:text-2xl font-serif tracking-tight">
+          Divina Commedia
+        </a>
+      </div>
+      <button id="mobile-menu-button" class="md:hidden flex items-center px-3 py-2 border rounded text-gray-700 border-gray-700 hover:text-gray-900 hover:border-gray-900">
+        <svg class="h-3 w-3 fill-current" viewBox="0 0 20 20">
+          <title>Menu</title>
+          <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+        </svg>
+      </button>
+      <div id="nav-menu" class="hidden md:flex md:items-center w-full md:w-auto">
+        <div class="md:flex-grow text-center md:text-left">
+          <a href="index.html" class="block mt-4 md:inline-block md:mt-0 mr-6 nav-link text-gray-700 hover:text-gray-900">
+            Home
+          </a>
+          <a href="biografia.html" class="block mt-4 md:inline-block md:mt-0 mr-6 nav-link text-gray-700 hover:text-gray-900">
+            Biografia
+          </a>
+          <a href="timeline.html" class="block mt-4 md:inline-block md:mt-0 mr-6 nav-link text-gray-700 hover:text-gray-900">
+            Timeline
+          </a>
+          <a href="quiz.html" class="block mt-4 md:inline-block md:mt-0 mr-6 nav-link text-gray-700 hover:text-gray-900 font-semibold ">
+            Quiz
+          </a>
+          <a href="chatbot.html" class="block mt-4 md:inline-block md:mt-0 nav-link text-gray-700 hover:text-gray-900">
+            Chatbot
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Selezione cantica -->
+  <section id="select-cantica" class="py-16 text-center">
+    <h1 class="text-3xl md:text-4xl font-bold mb-8">Scegli una Cantica</h1>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto px-4">
+      <div onclick="startQuiz('inferno')" class="cursor-pointer card-hover bg-red-100 p-6 rounded-lg shadow fade-in">
+        <h2 class="text-2xl font-bold text-red-700 mb-2">Inferno</h2>
+        <p>Scopri i cerchi della dannazione eterna.</p>
+      </div>
+      <div onclick="startQuiz('purgatorio')" class="cursor-pointer card-hover bg-blue-100 p-6 rounded-lg shadow fade-in">
+        <h2 class="text-2xl font-bold text-blue-700 mb-2">Purgatorio</h2>
+        <p>Un viaggio di redenzione e ascesa.</p>
+      </div>
+      <div onclick="startQuiz('paradiso')" class="cursor-pointer card-hover bg-yellow-100 p-6 rounded-lg shadow fade-in">
+        <h2 class="text-2xl font-bold text-yellow-700 mb-2">Paradiso</h2>
+        <p>La visione finale della luce divina.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sezione quiz -->
+  <section id="quiz-section" class="hidden py-10 px-4 max-w-3xl mx-auto bg-white shadow-lg rounded-lg fade-in">
+    <div id="question" class="text-xl font-semibold mb-6"></div>
+    <form id="answers" class="space-y-3 mb-6"></form>
+    <button onclick="confermaRisposta()" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded">Conferma</button>
+    <div id="result" class="mt-6 text-center text-xl font-bold text-green-700 hidden"></div>
+  </section>
+
+  
+
+  <script>
+const quizData = {
+  inferno: [
+    { domanda: "Chi accompagna Dante nell’Inferno?", opzioni: ["Beatrice", "Virgilio", "Catone"], corretta: 1 },
+    { domanda: "Quanti cerchi ha l’Inferno?", opzioni: ["7", "9", "10"], corretta: 1 },
+    { domanda: "Come si chiama il primo cerchio?", opzioni: ["Limbo", "Golosi", "Superbi"], corretta: 0 },
+    { domanda: "Qual è la legge morale usata per punire i dannati?", opzioni: ["Legge divina", "Contrappasso", "Reincarnazione"], corretta: 1 },
+    { domanda: "Chi è punito con la bufera infernale?", opzioni: ["Lussuriosi", "Avari", "Superbi"], corretta: 0 },
+    { domanda: "In quale canto si incontra Paolo e Francesca?", opzioni: ["Canto V", "Canto I", "Canto X"], corretta: 0 },
+    { domanda: "Dove si trova Lucifero?", opzioni: ["Nel Limbo", "Nel 9° cerchio", "Nel Purgatorio"], corretta: 1 },
+    { domanda: "Chi è il traghettatore delle anime?", opzioni: ["Ulisse", "Caronte", "Minosse"], corretta: 1 },
+    { domanda: "Chi giudica le anime all’ingresso dell’Inferno?", opzioni: ["Virgilio", "Lucifero", "Minosse"], corretta: 2 },
+    { domanda: "Chi sono gli ignavi?", opzioni: ["I traditori", "I neutrali", "I bestemmiatori"], corretta: 1 }
+  ],
+  purgatorio: [
+    { domanda: "Quante cornici ha il Purgatorio?", opzioni: ["5", "7", "9"], corretta: 1 },
+    { domanda: "Chi accompagna Dante nel Purgatorio?", opzioni: ["Beatrice", "Virgilio", "San Tommaso"], corretta: 1 },
+    { domanda: "Qual è la prima cornice del Purgatorio?", opzioni: ["Superbi", "Invidiosi", "Iracondi"], corretta: 0 },
+    { domanda: "Cosa si fa nel Purgatorio?", opzioni: ["Si soffre eternamente", "Si scontano i peccati per purificarsi", "Si riposa"], corretta: 1 },
+    { domanda: "Quale virtù domina il Purgatorio?", opzioni: ["Fede", "Speranza", "Carità"], corretta: 1 },
+    { domanda: "Chi incontra Dante tra i musicisti famosi?", opzioni: ["Stazio", "Casella", "Lucano"], corretta: 1 },
+    { domanda: "Dove si trova l’angelo portinaio?", opzioni: ["Alla cima", "All’entrata", "Nel centro"], corretta: 1 },
+    { domanda: "Qual è la funzione delle tre scale?", opzioni: ["Simboleggiano i peccati", "Simboleggiano le virtù", "Simboleggiano la confessione, pentimento e soddisfazione"], corretta: 2 },
+    { domanda: "Come si chiama il poeta che si converte nel Purgatorio?", opzioni: ["Virgilio", "Stazio", "Lucifero"], corretta: 1 },
+    { domanda: "Chi appare al termine del Purgatorio per guidare Dante?", opzioni: ["Beatrice", "San Bernardo", "Lucifero"], corretta: 0 }
+  ],
+  paradiso: [
+    { domanda: "Chi accompagna Dante nel Paradiso?", opzioni: ["San Bernardo", "Beatrice", "Virgilio"], corretta: 1 },
+    { domanda: "In quanti cieli è suddiviso il Paradiso?", opzioni: ["7", "9", "10"], corretta: 1 },
+    { domanda: "Come si chiama l’ultimo cielo?", opzioni: ["Primo Mobile", "Empireo", "Cielo delle Stelle Fisse"], corretta: 1 },
+    { domanda: "Chi è San Bernardo?", opzioni: ["Un angelo", "L’ultima guida di Dante", "Un dannato"], corretta: 1 },
+    { domanda: "Quale è la virtù fondamentale del Paradiso?", opzioni: ["Speranza", "Carità", "Fede"], corretta: 2 },
+    { domanda: "Che cosa vede Dante nell’Empireo?", opzioni: ["Beatrice", "Luce divina", "Le anime dei dannati"], corretta: 1 },
+    { domanda: "Chi è l’autore della 'Candida Rosa'?", opzioni: ["Lucifero", "Beatrice", "Dio"], corretta: 2 },
+    { domanda: "Quale figura rappresenta Dio alla fine?", opzioni: ["Un triangolo", "Tre cerchi concentrici", "Una scala"], corretta: 1 },
+    { domanda: "Cosa simboleggia il 'punto' di luce?", opzioni: ["L'inizio dell’universo", "La Trinità", "Dio stesso"], corretta: 2 },
+    { domanda: "Come termina la Divina Commedia?", opzioni: ["Con il ritorno sulla Terra", "Con la visione di Dio", "Con l’abbandono di Beatrice"], corretta: 1 }
+  ]
+};
+
+  let cantica = "";
+  let indice = 0;
+  let punteggio = 0;
+  let domande = [];
+  let risposteUtente = [];
+
+  function startQuiz(selected) {
+    cantica = selected;
+    domande = quizData[selected];
+    indice = 0;
+    punteggio = 0;
+    risposteUtente = [];
+    document.getElementById("select-cantica").style.display = "none";
+    document.getElementById("quiz-section").classList.remove("hidden");
+    mostraDomanda();
+  }
+
+  function mostraDomanda() {
+    const domanda = domande[indice];
+    const questionEl = document.getElementById("question");
+    const answersForm = document.getElementById("answers");
+    const resultEl = document.getElementById("result");
+
+    questionEl.textContent = `Domanda ${indice + 1}: ${domanda.domanda}`;
+    answersForm.innerHTML = "";
+    resultEl.classList.add("hidden");
+
+    domanda.opzioni.forEach((opzione, idx) => {
+      const label = document.createElement("label");
+      label.className = "block cursor-pointer";
+      label.innerHTML = `
+        <input type="radio" name="risposta" value="${idx}" class="mr-2">
+        ${opzione}
+      `;
+      answersForm.appendChild(label);
+    });
+  }
+
+  function confermaRisposta() {
+    const selezione = document.querySelector('input[name="risposta"]:checked');
+    if (!selezione) {
+      alert("Seleziona una risposta per continuare.");
+      return;
+    }
+
+    const risposta = parseInt(selezione.value);
+    risposteUtente.push(risposta);
+    if (risposta === domande[indice].corretta) {
+      punteggio++;
+    }
+
+    indice++;
+    if (indice < domande.length) {
+      mostraDomanda();
+    } else {
+      mostraRisultato();
+    }
+  }
+
+  function mostraRisultato() {
+    const section = document.getElementById("quiz-section");
+    section.innerHTML = `
+      <h2 class="text-2xl font-bold text-center mb-6">Risultato: ${punteggio} / ${domande.length}</h2>
+      <div class="space-y-6">
+        ${domande.map((d, i) => {
+          const userAnswer = risposteUtente[i];
+          const isCorrect = userAnswer === d.corretta;
+          const classi = isCorrect ? 'border-green-500 bg-green-50' : 'border-red-500 bg-red-50';
+          const icona = isCorrect ? '✅' : '❌';
+          return `
+            <div class="p-4 border-2 rounded ${classi}">
+              <p class="font-semibold mb-2">${icona} ${i + 1}. ${d.domanda}</p>
+              <ul class="space-y-1">
+                ${d.opzioni.map((opt, idx) => {
+                  const evidenzia = idx === d.corretta ? 'font-bold underline' : '';
+                  const evidenziaErrata = idx === userAnswer && idx !== d.corretta ? 'text-red-600' : '';
+                  return `<li class="${evidenzia} ${evidenziaErrata}">- ${opt}</li>`;
+                }).join('')}
+              </ul>
+            </div>
+          `;
+        }).join('')}
+      </div>
+      <div class="text-center mt-8">
+        <button onclick="location.reload()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Ricomincia</button>
+      </div>
+    `;
+  }
+</script>
+</body>
+</html>
